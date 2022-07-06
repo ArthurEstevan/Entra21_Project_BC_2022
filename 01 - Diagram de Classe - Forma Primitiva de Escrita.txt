@@ -1,0 +1,84 @@
+============================================
+
+Sistema Báncario
+
+----------------------------------
+|     Usuários do Aplicativo     |
+----------------------------------
+
+- Pessoas ( superclasse )
+
+- Nome ( String )
+- CPF ( String )
+- RG ( String )
+- Data de Nascimento ( String )
+- Sexo ( String )
+- Mãe ( String )
+- Pai ( String )
+- CEP ( String )
+- Endereço ( String )
+- Número ( String )
+- Bairro ( String )
+- Cidade ( String )
+- Estado ( String )
+- Celular ( String )
+
+Implementar um método de confirmação de idade para cadasto no banco 18 > true 18 < false
+
+============================================
+
+- Clientes ( subclasse ) >>> Pessoa <<<
+
+- Conta corrente ( String )
+- Agência ( String )
+- Senha ( String )
+- Reclamações ( ArrayList<String> )
+- Data de cadastro ( DateLocal )
+- Email ( String )
+
+============================================
+
+- Funcionário ( subclasse ) >>> Pessoa <<<
+
+- Feedback ( ArrayList<String> )
+- Bater ponto ( DateLocalTime )
+- Senha ( String )
+- Date de admissão ( DateLocal )
+- Date de demisão ( DateLocal )
+
+============================================
+
+-------------------
+|     EMPRESA     | - será um implemento futuro
+-------------------
+
+============================================
+
+-----------------------------------------
+|     Interface do Sistema Bancário     |
+-----------------------------------------
+
+- Main ( Main )
+
+- Menu inicial ( menu utilizando do { } while () | switch | ArrayList<String> | váriaveis | )
+- Chamada de outros menus ( instancia de objetos )
+
+============================================
+
+- Gerador de Menu
+ 
+- Menu login do Funcionário
+
+- Menu login do Cliente
+
+- Menu cadastro do cliente
+
+- Interface operações
+
+- Interface ICRUD
+
+- Enum investimentos
+
+- Enum tradução
+
+- confirmação de login
