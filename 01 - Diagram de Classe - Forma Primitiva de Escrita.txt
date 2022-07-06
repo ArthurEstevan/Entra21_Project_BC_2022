@@ -14,7 +14,7 @@ Sistema Báncario
 - Data de Nascimento ( String )
 - Sexo ( String )
 - Mãe ( String )
-- Pai ( String )
+- Pai ( String )			FEITO
 - CEP ( String )
 - Endereço ( String )
 - Número ( String )
@@ -32,7 +32,7 @@ Implementar um método de confirmação de idade para cadasto no banco 18 > true 18
 - Conta corrente ( String )
 - Agência ( String )
 - Senha ( String )
-- Reclamações ( ArrayList<String> )
+- Reclamações ( ArrayList<String> )		FEITO
 - Data de cadastro ( DateLocal )
 - Email ( String )
 
@@ -42,7 +42,7 @@ Implementar um método de confirmação de idade para cadasto no banco 18 > true 18
 
 - Feedback ( ArrayList<String> )
 - Bater ponto ( DateLocalTime )
-- Senha ( String )
+- Senha ( String )				FEITO
 - Date de admissão ( DateLocal )
 - Date de demisão ( DateLocal )
 
@@ -58,27 +58,37 @@ Implementar um método de confirmação de idade para cadasto no banco 18 > true 18
 |     Interface do Sistema Bancário     |
 -----------------------------------------
 
-- Main ( Main )
+- Main ( Main ) x
 
 - Menu inicial ( menu utilizando do { } while () | switch | ArrayList<String> | váriaveis | )
 - Chamada de outros menus ( instancia de objetos )
 
 ============================================
 
-- Gerador de Menu
+- GeradorMenu x
+
+- ArmazenasMenus X
+
+---------------------------
+
+- MenuEntrar X
  
-- Menu login do Funcionário
+- MenuFuncionário x
 
-- Menu login do Cliente
+- MenuCliente x
+---------------------------
 
-- Menu cadastro do cliente
+- Menucadastrocliente x
 
-- Interface operações
+---------------------------
 
-- Interface ICRUD
 
-- Enum investimentos
+- Interfaceoperações 
 
-- Enum tradução
+- InterfaceICRUD
 
-- confirmação de login
+- Enuminvestimentos
+
+- Enumtradução
+
+- confirmaçãoLogin
