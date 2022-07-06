@@ -6,12 +6,18 @@ import java.util.Arrays;
 public class ArmazenarMenus {
 
     public static void entrar() {
-        new MenuCliente("Login", new ArrayList<String>(Arrays.asList("Login Cliente", "Login Funcionario"))).executarMenu();
+        new MenuEntrar("Login", new ArrayList<String>(Arrays.asList("Conta Cliente", "Conta Funcionario"))).executarMenu();
+    }
+
+    public static void cliente() {
+        new MenuCliente("Cliente", new ArrayList<String>(Arrays.asList("Dados Bancarios", "Deposito", "Sacar", "Transferencia", "Investimento", "Saldo"))).executarMenu();
+    }
+
+    public static void funcionario() {
+        new MenuCliente("Funcionario",new ArrayList<String>(Arrays.asList("Meus Dados", "Manipular Clientes"))).executarMenu();
     }
 
     public static void cadastrar() {
-        new MenuCadastrar("Cadastrar", new ArrayList<String>(Arrays.asList("Cadastrar Cliente", "Cadastrar Empresa"))).executarMenu();
+        new MenuCadastrarCliente("Cadastrar", new ArrayList<String>(Arrays.asList("Cadastrar Cliente", "Enviar Curriculo"))).executarMenu();
     }
-
-
 }

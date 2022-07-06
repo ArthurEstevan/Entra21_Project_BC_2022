@@ -1,6 +1,9 @@
 package br.com.entra21.backend.menu;
 
+import br.com.entra21.backend.menu.GeradorMenus;
+
 import java.util.ArrayList;
+
 
 public class MenuCliente extends GeradorMenus {
 
@@ -10,6 +13,31 @@ public class MenuCliente extends GeradorMenus {
 
     @Override
     public byte capturar() {
-        return super.capturar();
+
+        byte opcao = super.capturar();
+
+        switch (opcao) {
+
+            case 2:
+                System.out.println("oi");
+                break;
+
+            case 3:
+                System.out.println("oi");
+                break;
+
+            case 4:
+                System.out.println("oi");
+                break;
+
+            case 5:
+                System.out.println("oi");
+                break;
+
+            case 6:
+                System.out.println("oi");
+                break;
+        }
+        return opcao;
     }
 }

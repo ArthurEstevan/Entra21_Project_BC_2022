@@ -47,7 +47,6 @@ public class Main {
 
     public static void menu() {
 
-
         LocalDate entrada = LocalDate.now();
 
         System.out.println("\n" + entrada);
@@ -62,6 +61,6 @@ public class Main {
             System.out.println(menus);
         }
         System.out.println("========================================");
-
+        System.out.print("Escolha uma opcao: ");
     }
 }

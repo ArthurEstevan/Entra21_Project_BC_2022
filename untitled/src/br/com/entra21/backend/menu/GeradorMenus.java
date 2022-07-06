@@ -21,14 +21,15 @@ public class GeradorMenus {
         if (opcoes != null && !opcoes.isEmpty()) {
 
             do {
-                System.out.println("==================== Menu " + getTitulo() + " ====================");
+                System.out.println("\n============== Menu " + getTitulo() + " ==============");
                 System.out.println("0) Sair");
                 System.out.println("1) Voltar");
 
                 for (int contador = 0; contador < opcoes.size(); contador++) {
-                        System.out.println((contador+2) + ") " + opcoes.get(contador));
+                    System.out.println((contador + 2) + ") " + opcoes.get(contador));
                 }
                 System.out.println("========================================");
+                System.out.print("Escolha uma opcao: ");
             } while (capturar() != 1);
 
         } else {
@@ -51,7 +52,6 @@ public class GeradorMenus {
             case 1:
                 break;
         }
-
         return opcao;
     }
 
@@ -66,5 +66,4 @@ public class GeradorMenus {
     public String getTitulo() {
         return titulo;
     }
-
 }
