@@ -16,8 +16,8 @@ public class Funcionario extends Pessoa {
 
     }
 
-    public Funcionario(String nome, String cpf, String rg, String dataNascimento, String sexo, String mae, String pai, String cep, String endereco, String numero, String bairro, String cidade, String estado, String celular, ArrayList<String> feedback, LocalDateTime baterPonto, String senha, LocalDate dataAdmissao, LocalDate dataDemissao) {
-        super(nome, cpf, rg, dataNascimento, sexo, mae, pai, cep, endereco, numero, bairro, cidade, estado, celular);
+    public Funcionario(String nome, String cpf, String rg, String dataNascimento, String sexo, String mae, String pai, String cep, String endereco, String numero, String bairro, String cidade, String estado, String celular, byte idade, ArrayList<String> feedback, LocalDateTime baterPonto, String senha, LocalDate dataAdmissao, LocalDate dataDemissao) {
+        super(nome, cpf, rg, dataNascimento, sexo, mae, pai, cep, endereco, numero, bairro, cidade, estado, celular, idade);
         this.feedback = feedback;
         this.baterPonto = baterPonto;
         this.senha = senha;

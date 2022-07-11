@@ -14,7 +14,7 @@ public class ArmazenarMenus {
     }
 
     public static void funcionario() {
-        new MenuCliente("Funcionario",new ArrayList<String>(Arrays.asList("Meus Dados", "Manipular Clientes"))).executarMenu();
+        new MenuCliente("Funcionario",new ArrayList<String>(Arrays.asList("Meus Dados", "CRUD Clientes"))).executarMenu();
     }
 
     public static void cadastrar() {

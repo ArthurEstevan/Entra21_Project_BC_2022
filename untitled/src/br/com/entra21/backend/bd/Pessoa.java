@@ -2,6 +2,7 @@ package br.com.entra21.backend.bd;
 
 public class Pessoa {
     private String nome;
+    private byte idade;
     private String cpf;
     private String rg;
     private String dataNascimento;
@@ -19,7 +20,7 @@ public class Pessoa {
     public Pessoa() {
         super();
     }
-    public Pessoa(String nome, String cpf, String rg, String dataNascimento, String sexo, String mae, String pai, String cep, String endereco, String numero, String bairro, String cidade, String estado, String celular) {
+    public Pessoa(String nome, String cpf, String rg, String dataNascimento, String sexo, String mae, String pai, String cep, String endereco, String numero, String bairro, String cidade, String estado, String celular, byte idade) {
         super();
         this.nome = nome;
         this.cpf = cpf;
@@ -35,6 +36,7 @@ public class Pessoa {
         this.cidade = cidade;
         this.estado = estado;
         this.celular = celular;
+        this.idade = idade;
     }
 
     public String getNome() {
@@ -147,5 +149,13 @@ public class Pessoa {
 
     public void setCelular(String celular) {
         this.celular = celular;
+    }
+
+    public byte getIdade() {
+        return idade;
+    }
+
+    public void setIdade(byte idade) {
+        this.idade = idade;
     }
 }
