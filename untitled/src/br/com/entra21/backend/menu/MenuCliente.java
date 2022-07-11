@@ -1,12 +1,15 @@
 package br.com.entra21.backend.menu;
 
+import br.com.entra21.backend.annotation.Saldo;
 import br.com.entra21.backend.menu.GeradorMenus;
+import br.com.entra21.backend.operacoes_bancaria.Operacoes;
 
 import java.util.ArrayList;
 
 
-public class MenuCliente extends GeradorMenus {
+public class MenuCliente extends GeradorMenus implements Operacoes {
 
+    @Saldo(ordemDePrioridade = Saldo.OrdemDePrioridade.IMPORTATE, toDo = "Implementar saldo para todos os cliente", autor = "Arthur Estevan Vargas")
     public MenuCliente(String titulo, ArrayList<String> opcoes) {
         super(titulo, opcoes);
     }
@@ -17,12 +20,50 @@ public class MenuCliente extends GeradorMenus {
         byte opcao = super.capturar();
 
         switch (opcao) {
-            case 2 -> System.out.println("oi");
-            case 3 -> System.out.println("oi");
-            case 4 -> System.out.println("oi");
-            case 5 -> System.out.println("oi");
-            case 6 -> System.out.println("oi");
+            case 2 -> dadosBancarios();
+            case 3 -> deposito(capturarValor());
+            case 4 -> sacar(capturarValor());
+            case 5 -> transferencia(capturarValor());
+            case 6 -> saldo();
         }
         return opcao;
+    }
+
+    @Override
+    public void dadosBancarios() {
+
+    }
+
+    @Override
+    public void deposito(double deposito) {
+
+    }
+
+    @Override
+    public void sacar(double sacar) {
+
+    }
+
+    @Override
+    public void transferencia(double transferencia) {
+
+    }
+
+    @Override
+    public void investimento() {
+
+    }
+
+    @Override
+    public void saldo() {
+
+    }
+
+    @Override
+    public double capturarValor() {
+
+        System.out.print("Informe o valor: ");
+        double valor = super.getInput().nextDouble();
+        return valor;
     }
 }

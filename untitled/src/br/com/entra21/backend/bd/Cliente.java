@@ -3,7 +3,7 @@ package br.com.entra21.backend.bd;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Cliente extends Pessoa{
+public class Cliente extends Pessoa {
 
     private String contaCorrente;
     private String agencia;
@@ -12,11 +12,13 @@ public class Cliente extends Pessoa{
     private LocalDate dataCadastro;
     private String email;
 
-    public Cliente () {
+    private Double saldo;
+
+    public Cliente() {
 
     }
 
-    public Cliente(String nome, String cpf, String rg, String dataNascimento, String sexo, String mae, String pai, String cep, String endereco, int numero, String bairro, String cidade, String estado, String celular, byte idade, String contaCorrente, String agencia, String senha, ArrayList<String> reclamacoes, LocalDate dataCadastro, String email) {
+    public Cliente(String nome, String cpf, String rg, String dataNascimento, String sexo, String mae, String pai, String cep, String endereco, int numero, String bairro, String cidade, String estado, String celular, byte idade, String contaCorrente, String agencia, String senha, ArrayList<String> reclamacoes, LocalDate dataCadastro, String email, Double saldo) {
         super(nome, cpf, rg, dataNascimento, sexo, mae, pai, cep, endereco, numero, bairro, cidade, estado, celular, idade);
         this.contaCorrente = contaCorrente;
         this.agencia = agencia;
@@ -24,6 +26,7 @@ public class Cliente extends Pessoa{
         this.reclamacoes = reclamacoes;
         this.dataCadastro = dataCadastro;
         this.email = email;
+        this.saldo = saldo;
     }
 
     public String getContaCorrente() {
@@ -72,5 +75,37 @@ public class Cliente extends Pessoa{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(Double saldo) {
+        this.saldo = saldo;
+    }
+
+    public String toString() {
+
+        return "========================================" +
+                "Nome: " + getNome() +
+                "Idade: " + getIdade() +
+                "CPF: " + getCpf() +
+                "RG: " + getRg() +
+                "Data Nascimento: " + getDataNascimento() +
+                "Sexo: " + getSexo() +
+                "Mae: " + getMae() +
+                "Pai: " + getPai() +
+                "CEP: " + getCep() +
+                "Endereco: " + getEndereco() +
+                "Numero: " + getNumero() +
+                "Bairro: " + getBairro() +
+                "Cidade: " + getCidade() +
+                "Estado: " + getEstado() +
+                "Celular: " + getCelular() +
+                "Conta Corrente: " + getContaCorrente() +
+                "Agencia: " + getAgencia() +
+                "Data de Cadastro: " + getDataCadastro() +
+                "========================================";
     }
 }

@@ -25,12 +25,12 @@ public class Armazenar {
         cliente.put("167.220.508-58", new Cliente("Carlos Cláudio Lima", "167.220.508-58", "26.841.725-8", "06/07/1962", "Feminino",
                 "Josefa Sueli", "Enzo Cauã Farias", "64218-780", "Rua Oeiras", 748, "Nova Parnaíba", "Parnaíba",
                 "PI", "(86) 98857-3837", (byte) 60, "1473786-3", "6345", "OYJEHqQuae", new ArrayList<>(Arrays.asList("")),
-                dataCadastro, "mariah_sabrina_farias@tigra.com.br"));
+                dataCadastro, "mariah_sabrina_farias@tigra.com.br", (double) 0));
 
         cliente.put("", new Cliente("Sérgio Yuri Lopes", "878.371.923-70", "34.360.005-5", "02/04/1970", "Masculino",
                 "Priscila Clarice", "Pedro Cauê Lopes", "94480-687", "Travessa Sete de Setembro", 844, "Santa Isabel", "Viamão",
                 "RS", "(51) 98206-8933", (byte) 52, "1234116-4", "6345", "S53p6Cer1x", new ArrayList<>(Arrays.asList("")),
-                dataCadastro, "sergio_yuri_lopes@focustg.com.br"));
+                dataCadastro, "sergio_yuri_lopes@focustg.com.br", (double) 0));
 
     }
 

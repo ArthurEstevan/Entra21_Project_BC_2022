@@ -64,4 +64,26 @@ public class Funcionario extends Pessoa {
     public void setDataDemissao(LocalDate dataDemissao) {
         this.dataDemissao = dataDemissao;
     }
+
+    public String toString() {
+
+        return "========================================" +
+                "Nome: " + getNome() +
+                "Idade: " + getIdade() +
+                "CPF: " + getCpf() +
+                "RG: " + getRg() +
+                "Data Nascimento: " + getDataNascimento() +
+                "Sexo: " + getSexo() +
+                "Mae: " + getMae() +
+                "Pai: " + getPai() +
+                "CEP: " + getCep() +
+                "Endereco: " + getEndereco() +
+                "Numero: " + getNumero() +
+                "Bairro: " + getBairro() +
+                "Cidade: " + getCidade() +
+                "Estado: " + getEstado() +
+                "Celular: " + getCelular() +
+                "Data de Cadastro: " + getDataAdmissao() +
+                "========================================";
+    }
 }
