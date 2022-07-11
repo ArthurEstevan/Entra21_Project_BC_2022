@@ -20,4 +20,16 @@ public class ArmazenarMenus {
     public static void cadastrar() {
         new MenuCadastrarCliente("Cadastrar", new ArrayList<String>(Arrays.asList("Cadastrar Cliente", "Enviar Curriculo"))).executarMenu();
     }
+
+    public static void sobre(){
+
+        System.out.println("\n========================================");
+        System.out.println("Projeto Conta Bancaria v2.0");
+        System.out.println("========================================");
+        System.out.println("Autor - Arthur Estevan Vargas;");
+        System.out.println("Ideia - Update Conta Bancaria v1.0;");
+        System.out.println("Referencias - Oliota e Time Verde;");
+        System.out.println("========================================");
+
+    }
 }

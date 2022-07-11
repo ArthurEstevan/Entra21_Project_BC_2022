@@ -16,7 +16,7 @@ public class Cliente extends Pessoa{
 
     }
 
-    public Cliente(String nome, String cpf, String rg, String dataNascimento, String sexo, String mae, String pai, String cep, String endereco, String numero, String bairro, String cidade, String estado, String celular, byte idade, String contaCorrente, String agencia, String senha, ArrayList<String> reclamacoes, LocalDate dataCadastro, String email) {
+    public Cliente(String nome, String cpf, String rg, String dataNascimento, String sexo, String mae, String pai, String cep, String endereco, int numero, String bairro, String cidade, String estado, String celular, byte idade, String contaCorrente, String agencia, String senha, ArrayList<String> reclamacoes, LocalDate dataCadastro, String email) {
         super(nome, cpf, rg, dataNascimento, sexo, mae, pai, cep, endereco, numero, bairro, cidade, estado, celular, idade);
         this.contaCorrente = contaCorrente;
         this.agencia = agencia;

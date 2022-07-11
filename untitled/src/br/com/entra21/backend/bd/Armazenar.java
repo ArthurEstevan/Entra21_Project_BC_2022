@@ -1,52 +1,51 @@
 package br.com.entra21.backend.bd;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Armazenar {
 
-    HashMap<String, Cliente> cliente = new HashMap();
-    HashMap<String, Funcionario> funcionario = new HashMap();
+    public static HashMap<String, Cliente> cliente = new HashMap();
+    public static HashMap<String, Funcionario> funcionario = new HashMap();
 
-    public void gerarCliente(){
+    public static void massaDeDados() {
 
-
-        cliente.put("", new Cliente());
-
-        cliente.put("", new Cliente());
-
-        cliente.put("", new Cliente());
-
-        cliente.put("", new Cliente());
-
-        cliente.put("", new Cliente());
+        gerarCliente();
+        gerarFuncionario();
 
     }
 
-    public void gerarFuncionario() {
+    public static void gerarCliente() {
+
+        LocalDate dataCadastro = LocalDate.now();
+
+        cliente.put("167.220.508-58", new Cliente("Carlos Cláudio Lima", "167.220.508-58", "26.841.725-8", "06/07/1962", "Feminino",
+                "Josefa Sueli", "Enzo Cauã Farias", "64218-780", "Rua Oeiras", 748, "Nova Parnaíba", "Parnaíba",
+                "PI", "(86) 98857-3837", (byte) 60, "1473786-3", "6345", "OYJEHqQuae", new ArrayList<>(Arrays.asList("")),
+                dataCadastro, "mariah_sabrina_farias@tigra.com.br"));
+
+        cliente.put("", new Cliente("Sérgio Yuri Lopes", "878.371.923-70", "34.360.005-5", "02/04/1970", "Masculino",
+                "Priscila Clarice", "Pedro Cauê Lopes", "94480-687", "Travessa Sete de Setembro", 844, "Santa Isabel", "Viamão",
+                "RS", "(51) 98206-8933", (byte) 52, "1234116-4", "6345", "S53p6Cer1x", new ArrayList<>(Arrays.asList("")),
+                dataCadastro, "sergio_yuri_lopes@focustg.com.br"));
 
     }
-    {
-        "nome": "Luan Antonio da Paz",
-            "idade": 60,
-            "cpf": "733.823.077-31",
-            "rg": "39.387.958-6",
-            "data_nasc": "06/03/1962",
-            "sexo": "Masculino",
-            "signo": "Peixes",
-            "mae": "Regina Marcela Ester",
-            "pai": "Erick Raimundo da Paz",
-            "cep": "91787-004",
-            "endereco": "Acesso C",
-            "numero": 910,
-            "bairro": "Aberta dos Morros",
-            "cidade": "Porto Alegre",
-            "estado": "RS",
-            "celular": "(51) 98893-9806",
-             1013075-6
-             0683
-             reclamacoes
-             datacadastro
-            "senha": "ArUZoeGC35",
-            "email": "luan-dapaz75@hotmail.com.br",
+
+    public static void gerarFuncionario() {
+
+        LocalDateTime baterPonto = LocalDateTime.now();
+        LocalDate dataAdimissao = LocalDate.now();
+
+        funcionario.put("", new Funcionario("Vicente Hugo Oliveira", "933.158.537-38", "16.596.020-6", "24/01/1953", "Masculino",
+                "Gabriela Luzia Marlene", "Oliver Carlos Eduardo Oliveira", "38410-478", "Rua Anistia", 370 , "Laranjeiras", "Uberlândia",
+                "MG", "(34) 98818-8534", (byte) 39, new ArrayList<>(Arrays.asList("")), baterPonto, "gLmHMpGgAO", dataAdimissao, null));
+
+        funcionario.put("", new Funcionario("Andreia Larissa Eloá Assis", "580.319.807-21", "36.554.363-9", "18/04/1963", "Feminino",
+                "Alícia Tereza", "Fernando Paulo Benício Assis", "53437-740", "Rua Frei Caneca", 506, "Janga", "Paulista",
+                "PE", "(81) 98868-5457", (byte) 59, new ArrayList<>(Arrays.asList("")), baterPonto, "YJW6gmdXq2", dataAdimissao, null));
+
     }
 }

@@ -11,7 +11,7 @@ public class Pessoa {
     private String pai;
     private String cep;
     private String endereco;
-    private String numero;
+    private int numero;
     private String bairro;
     private String cidade;
     private String estado;
@@ -20,7 +20,7 @@ public class Pessoa {
     public Pessoa() {
         super();
     }
-    public Pessoa(String nome, String cpf, String rg, String dataNascimento, String sexo, String mae, String pai, String cep, String endereco, String numero, String bairro, String cidade, String estado, String celular, byte idade) {
+    public Pessoa(String nome, String cpf, String rg, String dataNascimento, String sexo, String mae, String pai, String cep, String endereco, int numero, String bairro, String cidade, String estado, String celular, byte idade) {
         super();
         this.nome = nome;
         this.cpf = cpf;
@@ -111,11 +111,11 @@ public class Pessoa {
         this.endereco = endereco;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
