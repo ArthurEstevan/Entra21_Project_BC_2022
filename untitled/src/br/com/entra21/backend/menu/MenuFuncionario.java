@@ -39,6 +39,8 @@ public class MenuFuncionario extends GeradorMenus implements ICrud<Cliente> {
     }
 
     public void meusDados(Funcionario funcionario) {
+        System.out.println("========================================");
+        System.out.println("Meus Dados");
         System.out.println(funcionario.toString());
     }
 
@@ -91,9 +93,14 @@ public class MenuFuncionario extends GeradorMenus implements ICrud<Cliente> {
         Cliente informacoes = buscar(chave);
 
         if (informacoes == null) {
+            System.out.println("========================================");
             System.out.println("-Cliente Inexistente-");
+            System.out.println("========================================");
         } else {
             Armazenar.cliente.put(chave.getCpf(), capturarValor());
+            System.out.println("========================================");
+            System.out.println("-Cliente Atualizado-");
+            System.out.println("========================================");
         }
     }
 
@@ -107,8 +114,8 @@ public class MenuFuncionario extends GeradorMenus implements ICrud<Cliente> {
         listar(Armazenar.cliente);
 
         Cliente informacoes = new Cliente();
-
-        System.out.println("Informe CPF do cliente: ");
+        System.out.print("Informe CPF do cliente: ");
+        informacoes.setCpf(super.getInput().nextLine());
         informacoes.setCpf(super.getInput().nextLine());
 
         return informacoes;
@@ -120,11 +127,10 @@ public class MenuFuncionario extends GeradorMenus implements ICrud<Cliente> {
         Cliente cliente = new Cliente();
 
         System.out.println("========================================");
-        System.out.println("Adicioando Cliente");
+        System.out.println("Adicioando ou Atualizando Cliente");
         System.out.println("========================================");
 
         System.out.print("Informe o nome completo: ");
-        cliente.setNome(super.getInput().nextLine());
         cliente.setNome(super.getInput().nextLine());
 
         System.out.print("Informe sua idade: ");
@@ -137,12 +143,11 @@ public class MenuFuncionario extends GeradorMenus implements ICrud<Cliente> {
 
             System.out.print("Informe CPF: ");
             cliente.setCpf(super.getInput().nextLine());
-            cliente.setCpf(super.getInput().nextLine());
 
             System.out.print("Informe RG: ");
             cliente.setRg(super.getInput().nextLine());
 
-            System.out.print("Informe data de nascimento");
+            System.out.print("Informe data de nascimento: ");
             cliente.setDataNascimento(super.getInput().nextLine());
 
             System.out.print("Informe sexo: ");
@@ -151,25 +156,26 @@ public class MenuFuncionario extends GeradorMenus implements ICrud<Cliente> {
             System.out.print("Informe nome da mae: ");
             cliente.setMae(super.getInput().nextLine());
 
-            System.out.println("Informe nome do pai: ");
+            System.out.print("Informe nome do pai: ");
             cliente.setPai(super.getInput().nextLine());
 
-            System.out.println("Informe seu CEP: ");
+            System.out.print("Informe seu CEP: ");
             cliente.setCep(super.getInput().nextLine());
 
-            System.out.println("Informe seu endereco: ");
+            System.out.print("Informe seu endereco: ");
             cliente.setEndereco(super.getInput().nextLine());
 
-            System.out.println("Informe seu numero de residencia: ");
+            System.out.print("Informe seu numero de residencia: ");
             cliente.setNumero(super.getInput().nextInt());
 
-            System.out.println("Informe seu bairro: ");
+            System.out.print("Informe seu bairro: ");
+            cliente.setBairro(super.getInput().nextLine());
             cliente.setBairro(super.getInput().nextLine());
 
-            System.out.println("Informe sua cidade: ");
+            System.out.print("Informe sua cidade: ");
             cliente.setCidade(super.getInput().nextLine());
 
-            System.out.println("Informe seu numero de celular: ");
+            System.out.print("Informe seu numero de celular: ");
             cliente.setCelular(super.getInput().nextLine());
 
             return cliente;
@@ -179,6 +185,14 @@ public class MenuFuncionario extends GeradorMenus implements ICrud<Cliente> {
 
     @Override
     public void exibirDetalhes(Cliente completo) {
+
+        if (completo==null) {
+            System.out.println("-Cliente Inexistente-");
+        } else {
+            System.out.println("========================================");
+            System.out.println("Listando Dados");
+            System.out.println(completo.toString());
+        }
 
     }
 
