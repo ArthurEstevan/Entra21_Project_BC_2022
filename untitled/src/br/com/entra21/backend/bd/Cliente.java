@@ -87,25 +87,25 @@ public class Cliente extends Pessoa {
 
     public String toString() {
 
-        return "========================================" +
-                "Nome: " + getNome() +
-                "Idade: " + getIdade() +
-                "CPF: " + getCpf() +
-                "RG: " + getRg() +
-                "Data Nascimento: " + getDataNascimento() +
-                "Sexo: " + getSexo() +
-                "Mae: " + getMae() +
-                "Pai: " + getPai() +
-                "CEP: " + getCep() +
-                "Endereco: " + getEndereco() +
-                "Numero: " + getNumero() +
-                "Bairro: " + getBairro() +
-                "Cidade: " + getCidade() +
-                "Estado: " + getEstado() +
-                "Celular: " + getCelular() +
-                "Conta Corrente: " + getContaCorrente() +
-                "Agencia: " + getAgencia() +
-                "Data de Cadastro: " + getDataCadastro() +
+        return "========================================\n" +
+                "Nome: " + getNome() + "\n" +
+                "Idade: " + getIdade() + "\n" +
+                "CPF: " + getCpf() + "\n" +
+                "RG: " + getRg() + "\n" +
+                "Data Nascimento: " + getDataNascimento() + "\n" +
+                "Sexo: " + getSexo() + "\n" +
+                "Mae: " + getMae() + "\n" +
+                "Pai: " + getPai() + "\n" +
+                "CEP: " + getCep() + "\n" +
+                "Endereco: " + getEndereco() + "\n" +
+                "Numero: " + getNumero() + "\n" +
+                "Bairro: " + getBairro() + "\n" +
+                "Cidade: " + getCidade() + "\n" +
+                "Estado: " + getEstado() + "\n" +
+                "Celular: " + getCelular() + "\n" +
+                "Conta Corrente: " + getContaCorrente() + "\n" +
+                "Agencia: " + getAgencia() + "\n" +
+                "Data de Cadastro: " + getDataCadastro() + "\n" +
                 "========================================";
     }
 }

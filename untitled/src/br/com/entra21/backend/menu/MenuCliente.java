@@ -1,7 +1,7 @@
 package br.com.entra21.backend.menu;
 
-import br.com.entra21.backend.annotation.Saldo;
-import br.com.entra21.backend.menu.GeradorMenus;
+import br.com.entra21.backend.annotation.Lembrete;
+import br.com.entra21.backend.bd.Cliente;
 import br.com.entra21.backend.operacoes_bancaria.Operacoes;
 
 import java.util.ArrayList;
@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class MenuCliente extends GeradorMenus implements Operacoes {
 
-    @Saldo(ordemDePrioridade = Saldo.OrdemDePrioridade.IMPORTATE, toDo = "Implementar saldo para todos os cliente", autor = "Arthur Estevan Vargas")
-    public MenuCliente(String titulo, ArrayList<String> opcoes) {
+    @Lembrete(ordemDePrioridade = Lembrete.OrdemDePrioridade.IMPORTATE, toDo = "Implementar saldo para todos os cliente", autor = "Arthur Estevan Vargas")
+    public MenuCliente(String titulo, ArrayList<String> opcoes, Cliente cliente) {
         super(titulo, opcoes);
     }
 

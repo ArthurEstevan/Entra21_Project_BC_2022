@@ -8,7 +8,7 @@ public interface ICrud<T> {
 
     public void adicionar();
 
-    public void buscar(T chave);
+    public T buscar(T chave);
 
     public void editar(T chave);
 

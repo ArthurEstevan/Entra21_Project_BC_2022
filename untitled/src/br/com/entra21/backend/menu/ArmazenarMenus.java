@@ -1,5 +1,9 @@
 package br.com.entra21.backend.menu;
 
+import br.com.entra21.backend.bd.Cliente;
+import br.com.entra21.backend.bd.Funcionario;
+import br.com.entra21.backend.confirmar.Confirmar;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -10,11 +14,14 @@ public class ArmazenarMenus {
     }
 
     public static void cliente() {
-        new MenuCliente("Cliente", new ArrayList<String>(Arrays.asList("Dados Bancarios", "Deposito", "Sacar", "Transferencia", "Investimento", "Saldo"))).executarMenu();
+        new MenuCliente("Cliente", new ArrayList<String>(Arrays.asList("Dados Bancarios", "Deposito", "Sacar", "Transferencia", "Investimento", "Saldo")), new Cliente()).executarMenu();
     }
 
     public static void funcionario() {
-        new MenuCliente("Funcionario",new ArrayList<String>(Arrays.asList("Meus Dados", "CRUD Clientes"))).executarMenu();
+
+
+
+        new MenuFuncionario("Funcionario",new ArrayList<String>(Arrays.asList("Meus Dados", "Listar", "Adicionar", "Editar", "Detalhe de Cliente", "Deletar")), Confirmar.confirmarFuncionario()).executarMenu();
     }
 
     public static void cadastrar() {
