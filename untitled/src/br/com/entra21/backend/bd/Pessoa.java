@@ -17,145 +17,156 @@ public class Pessoa {
     private String estado;
     private String celular;
 
+    // ======================================== CONSTRUCTOR ======================================== //
+
     public Pessoa() {
         super();
     }
-    public Pessoa(String nome, String cpf, String rg, String dataNascimento, String sexo, String mae, String pai, String cep, String endereco, int numero, String bairro, String cidade, String estado, String celular, byte idade) {
+
+    public Pessoa(String nome) {
         super();
         this.nome = nome;
-        this.cpf = cpf;
-        this.rg = rg;
-        this.dataNascimento = dataNascimento;
-        this.sexo = sexo;
-        this.mae = mae;
-        this.pai = pai;
-        this.cep = cep;
-        this.endereco = endereco;
-        this.numero = numero;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.celular = celular;
+    }
+
+    public Pessoa(String nome, byte idade) {
         this.idade = idade;
     }
 
-    public String getNome() {
-        return nome;
+    public Pessoa(String nome, byte idade, String cpf) {
+        super();
+        this.nome = nome;
+        this.idade = idade;
+        this.cpf = cpf;
     }
+
+    // ======================================== CONSTRUCTOR ======================================== //
+
+    // ======================================== SETTER ======================================== //
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public String getCpf() {
-        return cpf;
+    public void setIdade(byte idade) {
+        this.idade = idade;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public String getRg() {
-        return rg;
-    }
-
     public void setRg(String rg) {
         this.rg = rg;
-    }
-
-    public String getDataNascimento() {
-        return dataNascimento;
     }
 
     public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getSexo() {
-        return sexo;
-    }
-
     public void setSexo(String sexo) {
         this.sexo = sexo;
-    }
-
-    public String getMae() {
-        return mae;
     }
 
     public void setMae(String mae) {
         this.mae = mae;
     }
 
-    public String getPai() {
-        return pai;
-    }
-
     public void setPai(String pai) {
         this.pai = pai;
-    }
-
-    public String getCep() {
-        return cep;
     }
 
     public void setCep(String cep) {
         this.cep = cep;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
     public void setEndereco(String endereco) {
         this.endereco = endereco;
-    }
-
-    public int getNumero() {
-        return numero;
     }
 
     public void setNumero(int numero) {
         this.numero = numero;
     }
 
-    public String getBairro() {
-        return bairro;
-    }
-
     public void setBairro(String bairro) {
         this.bairro = bairro;
-    }
-
-    public String getCidade() {
-        return cidade;
     }
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    public String getCelular() {
-        return celular;
     }
 
     public void setCelular(String celular) {
         this.celular = celular;
     }
 
+    // ======================================== SETTER ======================================== //
+
+    // ======================================== GETTER ======================================== //
+
+    public String getNome() {
+        return nome;
+    }
+
     public byte getIdade() {
         return idade;
     }
 
-    public void setIdade(byte idade) {
-        this.idade = idade;
+    public String getCpf() {
+        return cpf;
     }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public String getMae() {
+        return mae;
+    }
+
+    public String getPai() {
+        return pai;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    // ======================================== GETTER ======================================== //
+
 }

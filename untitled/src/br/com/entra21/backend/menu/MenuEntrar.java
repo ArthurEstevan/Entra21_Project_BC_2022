@@ -17,8 +17,8 @@ public class MenuEntrar extends GeradorMenus {
             byte opcao = super.capturar();
 
             switch (opcao) {
-                case 2 -> ArmazenarMenus.cliente();
-                case 3 -> ArmazenarMenus.funcionario();
+
+
             }
             return opcao;
         }

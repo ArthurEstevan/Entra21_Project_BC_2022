@@ -1,42 +1,117 @@
 package br.com.entra21.backend.menu;
 
+import br.com.entra21.backend.bd.Armazenar;
 import br.com.entra21.backend.bd.Cliente;
 import br.com.entra21.backend.bd.Funcionario;
-import br.com.entra21.backend.confirmar.Confirmar;
+import br.com.entra21.backend.crud.FuncionarioCRUD;
+import br.com.entra21.backend.exceptions.FuncionarioExistenteException;
+import br.com.entra21.backend.exceptions.SenhaIncorretaException;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class ArmazenarMenus {
 
-    public static void entrar() {
-        new MenuEntrar("Login", new ArrayList<String>(Arrays.asList("Conta Cliente", "Conta Funcionario"))).executarMenu();
+    static Scanner input = new Scanner(System.in);
+    public static Funcionario funcionarioLogado = null;
+
+    public static void entrar(byte tentativa) {
+
+        if (tentativa == 0) {
+            System.out.println("-Desculpa Ocorreu um Erro-");
+            return;
+        } else {
+            System.out.println("\n============== Menu Entrada ==============\n");
+            System.out.println(tentativa < 3 ? tentativa + "/3 " + "-senha ou usuario incorreto tente novamente-\n": tentativa + "/3 " +"-confirme os dados abaixo-\n");
+        }
+        try {
+            System.out.print("Informe CPF do funcionario: ");
+            Funcionario funcionario = Armazenar.funcionarios.get(input.next().trim());
+
+            System.out.println("Funcionario encontrado: " + funcionario.getNome());
+            System.out.print("Informe a senha para liberar o acesso: ");
+
+            if (!funcionario.getSenha().equals(input.next())) {
+                throw new SenhaIncorretaException();
+            } else {
+                verificarSenha(funcionario);
+                return;
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Nenhum funcionario encontrado com esse CPF");
+            entrar(--tentativa);
+            return;
+        } catch (SenhaIncorretaException e) {
+            System.out.println(e.getMessage());
+            entrar(--tentativa);
+            return;
+        }
     }
 
-    public static void cliente() {
-        new MenuCliente("Cliente", new ArrayList<String>(Arrays.asList("Dados Bancarios", "Deposito", "Sacar", "Transferencia", "Investimento", "Saldo")), new Cliente()).executarMenu();
+    public static void cadastrar(byte tentativa) {
+
+        String cpf;
+
+        if (tentativa == 0) {
+            System.out.println("-Desculpa Ocorreu um Erro-");
+            return;
+        } else {
+            System.out.println("\n============== Menu de Cadastro ==============\n");
+            System.out.println(tentativa < 3 ? tentativa + "/3 " + "-cpf informado incorreto tente novamente-\n": tentativa + "/3 " +"-confirme os dados abaixo-\n");
+        }
+        try {
+            System.out.print("Informe CPF do novo funcionario: ");
+            cpf = input.next().trim();
+            Funcionario funcionario = Armazenar.funcionarios.get(cpf);
+
+            if (funcionario != null) {
+                throw new FuncionarioExistenteException();
+            } else {
+                funcionario = new FuncionarioCRUD().capturarValor();
+                funcionario.setCpf(cpf);
+                funcionario.setSenha(cpf);
+                Armazenar.funcionarios.put(cpf, funcionario);
+                System.out.println();
+                System.out.println("-funcionario cadastrado-");
+                System.out.println("IMPORTANTE: No primeiro acesso a senha e igual ao CPF e sera solicitado a mudanca:");
+                return;
+            }
+        } catch (FuncionarioExistenteException e) {
+            System.out.println(e.getMessage());
+            cadastrar(--tentativa);
+            return;
+        }
     }
 
-    public static void funcionario() {
+    private static void verificarSenha(Funcionario funcionario) {
 
+        if (funcionario.getSenha().equals(funcionario.getCpf()) || funcionario.getSenha().equals(funcionario.getDataAdmissao().format(DateTimeFormatter.ofPattern("dd/MM/YYYY")))) {
+            atualizarSenha(funcionario);
+            Armazenar.funcionarios.size();
+        } else {
+            definirFuncionarioLogado(funcionario);
 
-
-        new MenuFuncionario("Funcionario",new ArrayList<String>(Arrays.asList("Meus Dados", "Listar", "Adicionar", "Editar", "Detalhe de Cliente", "Deletar")), Confirmar.confirmarFuncionario()).executarMenu();
+            new MenuFuncionario("Funcionario", new ArrayList<String>(Arrays.asList("Cadastro", "Relatorio"))).executarMenu();
+        }
     }
 
-    public static void cadastrar() {
-        new MenuCadastrarCliente("Cadastrar", new ArrayList<String>(Arrays.asList("Cadastrar Cliente", "Enviar Curriculo"))).executarMenu();
+    private static void definirFuncionarioLogado(Funcionario funcionario) {
+
+        if (funcionario != null) {
+            System.out.println("~~~~~~~~~~~~ Bem Vindo " + funcionario.getNome() + " ~~~~~~~~~~~~");
+        } else {
+            System.out.println("Até a proxima " + funcionario.getNome() + ", volte sempre que precisar.");
+        }
+        funcionarioLogado = funcionario;
     }
 
-    public static void sobre(){
+    private static void atualizarSenha(Funcionario funcionario) {
 
-        System.out.println("\n========================================");
-        System.out.println("Projeto Conta Bancaria v2.0");
-        System.out.println("========================================");
-        System.out.println("Autor - Arthur Estevan Vargas;");
-        System.out.println("Ideia - Update Conta Bancaria v1.0;");
-        System.out.println("Referencias - Oliota e Time Verde;");
-        System.out.println("========================================");
-
+        System.out.print("Atualize sua senha, pois nao e seguro manter a senha igual ao cpf ou com a data de admissao: ");
+        funcionario.setSenha(input.next());
+        verificarSenha(funcionario);
     }
+
 }

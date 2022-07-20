@@ -6,84 +6,83 @@ import java.util.ArrayList;
 
 public class Funcionario extends Pessoa {
 
-    private ArrayList<String> feedback;
-    private LocalDateTime baterPonto;
-    private String senha;
     private LocalDate dataAdmissao;
     private LocalDate dataDemissao;
+    private ArrayList<String> feedback;
+    private String senha;
+
+    // ======================================== CONSTRUCTOR ======================================== //
 
     public Funcionario() {
-
+        super();
+        this.dataAdmissao = LocalDate.now();
     }
 
-    public Funcionario(String nome, String cpf, String rg, String dataNascimento, String sexo, String mae, String pai, String cep, String endereco, int numero, String bairro, String cidade, String estado, String celular, byte idade, ArrayList<String> feedback, LocalDateTime baterPonto, String senha, LocalDate dataAdmissao, LocalDate dataDemissao) {
-        super(nome, cpf, rg, dataNascimento, sexo, mae, pai, cep, endereco, numero, bairro, cidade, estado, celular, idade);
-        this.feedback = feedback;
-        this.baterPonto = baterPonto;
-        this.senha = senha;
+    public Funcionario(String nome) {
+        super(nome);
+        this.dataAdmissao = LocalDate.now();
+    }
+
+    public Funcionario(String nome, byte idade) {
+        super(nome, idade);
+        this.dataAdmissao = LocalDate.now();
+    }
+
+    public Funcionario(String nome, byte idade, String cpf) {
+        super(nome, idade, cpf);
+        this.senha = cpf;
+        this.dataAdmissao = LocalDate.now();
+    }
+
+    public Funcionario(String nome, byte idade, String cpf, LocalDate dataAdmissao, LocalDate dataDemissao, ArrayList<String> feedback) {
+        super(nome, idade, cpf);
         this.dataAdmissao = dataAdmissao;
         this.dataDemissao = dataDemissao;
-    }
-
-    public ArrayList<String> getFeedback() {
-        return feedback;
-    }
-
-    public void setFeedback(ArrayList<String> feedback) {
         this.feedback = feedback;
+        this.senha = cpf;
+        this.dataAdmissao = LocalDate.now();
     }
 
-    public LocalDateTime getBaterPonto() {
-        return baterPonto;
-    }
+    // ======================================== CONSTRUCTOR ======================================== //
 
-    public void setBaterPonto(LocalDateTime baterPonto) {
-        this.baterPonto = baterPonto;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public LocalDate getDataAdmissao() {
-        return dataAdmissao;
-    }
+    // ======================================== SETTER ======================================== //
 
     public void setDataAdmissao(LocalDate dataAdmissao) {
         this.dataAdmissao = dataAdmissao;
-    }
-
-    public LocalDate getDataDemissao() {
-        return dataDemissao;
     }
 
     public void setDataDemissao(LocalDate dataDemissao) {
         this.dataDemissao = dataDemissao;
     }
 
-    public String toString() {
-
-        return "========================================\n" +
-                "Nome: " + getNome() + "\n" +
-                "Idade: " + getIdade() + "\n" +
-                "CPF: " + getCpf() + "\n" +
-                "RG: " + getRg() + "\n" +
-                "Data Nascimento: " + getDataNascimento() + "\n" +
-                "Sexo: " + getSexo() + "\n" +
-                "Mae: " + getMae() + "\n" +
-                "Pai: " + getPai() + "\n" +
-                "CEP: " + getCep() + "\n" +
-                "Endereco: " + getEndereco() + "\n" +
-                "Numero: " + getNumero() + "\n" +
-                "Bairro: " + getBairro() + "\n" +
-                "Cidade: " + getCidade() + "\n" +
-                "Estado: " + getEstado() + "\n" +
-                "Celular: " + getCelular() + "\n" +
-                "Data de Admissao: " + getDataAdmissao() + "\n" +
-                "========================================";
+    public void setFeedback(ArrayList<String> feedback) {
+        this.feedback = feedback;
     }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    // ======================================== SETTER ======================================== //
+
+    // ======================================== GETTER ======================================== //
+
+    public LocalDate getDataAdmissao() {
+        return dataAdmissao;
+    }
+
+    public LocalDate getDataDemissao() {
+        return dataDemissao;
+    }
+
+    public ArrayList<String> getFeedback() {
+        return feedback;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    // ======================================== GETTER ======================================== //
 }
+
