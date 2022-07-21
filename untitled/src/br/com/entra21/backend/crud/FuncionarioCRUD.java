@@ -13,7 +13,7 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
 
 
     public FuncionarioCRUD() {
-        super("Clientes", opcoes);
+        super("Funcionario", opcoes);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
         System.out.println("========================================");
 
         for (int contador = 0; contador < funcoes.length; contador++) {
-            System.out.println(contador + " - " + funcoes[contador]);
+            System.out.println((contador + 1) + " - " + funcoes[contador]);
         }
         System.out.println("========================================");
 

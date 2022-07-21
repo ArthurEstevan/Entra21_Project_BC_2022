@@ -23,8 +23,8 @@ public class ArmazenarMenus {
             System.out.println("-Desculpa Ocorreu um Erro-");
             return;
         } else {
-            System.out.println("\n============== Menu Entrada ==============\n");
-            System.out.println(tentativa < 3 ? tentativa + "/3 " + "-senha ou usuario incorreto tente novamente-\n": tentativa + "/3 " +"-confirme os dados abaixo-\n");
+            System.out.println("\n============== Login ==============\n");
+            System.out.println(tentativa < 3 ? tentativa + "/3 " + "-senha ou usuario incorreto tente novamente-\n" : tentativa + "/3 " + "-confirme os dados abaixo-\n");
         }
         try {
             System.out.print("Informe CPF do funcionario: ");
@@ -58,8 +58,8 @@ public class ArmazenarMenus {
             System.out.println("-Desculpa Ocorreu um Erro-");
             return;
         } else {
-            System.out.println("\n============== Menu de Cadastro ==============\n");
-            System.out.println(tentativa < 3 ? tentativa + "/3 " + "-cpf informado incorreto tente novamente-\n": tentativa + "/3 " +"-confirme os dados abaixo-\n");
+            System.out.println("\n============== Register ==============\n");
+            System.out.println(tentativa < 3 ? tentativa + "/3 " + "-cpf informado incorreto tente novamente-\n" : tentativa + "/3 " + "-confirme os dados abaixo-\n");
         }
         try {
             System.out.print("Informe CPF do novo funcionario: ");
@@ -76,6 +76,7 @@ public class ArmazenarMenus {
                 System.out.println();
                 System.out.println("-funcionario cadastrado-");
                 System.out.println("IMPORTANTE: No primeiro acesso a senha e igual ao CPF e sera solicitado a mudanca:");
+                System.out.println("~~~~~~~~~~~~ Bem Vindo " + funcionario.getNome() + " ~~~~~~~~~~~~");
                 return;
             }
         } catch (FuncionarioExistenteException e) {
@@ -83,6 +84,23 @@ public class ArmazenarMenus {
             cadastrar(--tentativa);
             return;
         }
+    }
+
+    public static void sobre() {
+
+        System.out.println("\n============== Sobre o Projeto ==============\n");
+
+        System.out.println("Desenvolver um sistema bancario contendendo uma interface,crud, regra e negocio.\n" +
+                            "Deve ser publicado versao oficial do projeto no GitHub do time (Time Verde).\n");
+
+        System.out.println("- Organization: TimeVerde");
+        System.out.println("- Author: Arthur Estevan Vargas | Rafael Macedo");
+        System.out.println("- Version: GreenBank v2.0");
+        System.out.println("- Language: Portuguese / English");
+
+        System.out.println("============================================");
+
+
     }
 
     private static void verificarSenha(Funcionario funcionario) {
@@ -93,7 +111,7 @@ public class ArmazenarMenus {
         } else {
             definirFuncionarioLogado(funcionario);
 
-            new MenuFuncionario("Funcionario", new ArrayList<String>(Arrays.asList("Cadastro", "Relatorio"))).executarMenu();
+            new MenuPrincipal("do Funcionario", new ArrayList<String>(Arrays.asList("Cadastro", "Relatorio", "Conta Bancaria"))).executarMenu();
         }
     }
 
@@ -112,6 +130,36 @@ public class ArmazenarMenus {
         System.out.print("Atualize sua senha, pois nao e seguro manter a senha igual ao cpf ou com a data de admissao: ");
         funcionario.setSenha(input.next());
         verificarSenha(funcionario);
+    }
+
+    public static void recuperarSenha(byte tentativa) {
+
+        if (tentativa == 0) {
+            System.out.println("-Desculpa Ocorreu um Erro-");
+            return;
+        } else {
+            System.out.println("\n============== Menu Recuperacao de Senha ==============\n");
+            System.out.println(tentativa < 3 ? tentativa + "/3 " + "-senha ou usuario incorreto tente novamente-\n" : tentativa + "/3 " + "-confirme os dados abaixo-\n");
+        }
+        try {
+            System.out.print("Informe o CPF do funcionario: ");
+            Funcionario funcionario = Armazenar.funcionarios.get(input.next().trim());
+
+            System.out.println("Funcionario encontrado: " + funcionario.getNome());
+            funcionario.setSenha(funcionario.getDataAdmissao().format(DateTimeFormatter.ofPattern("dd/MM/YYYY")));
+            Armazenar.funcionarios.put(funcionario.getCpf(), funcionario);
+
+            System.out.println("A senha foi atualizada com a data de admissao no formato dd/MM/YYYY:");
+            System.out.println("Funcionario atualizado, por favor realize o login:");
+
+            System.out.println("==============================================");
+
+        } catch (NullPointerException e) {
+
+            System.out.println("Nenhum funcionario encontrado com esse CPF.");
+            recuperarSenha(--tentativa);
+            return;
+        }
     }
 
 }

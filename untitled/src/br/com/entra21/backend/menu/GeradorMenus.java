@@ -28,7 +28,7 @@ public class GeradorMenus {
                 for (int contador = 0; contador < opcoes.size(); contador++) {
                     System.out.println((contador + 2) + ") " + opcoes.get(contador));
                 }
-                System.out.println("========================================");
+                System.out.println("=============================================");
                 System.out.print("Escolha uma opcao: ");
             } while (capturar() != 1);
 

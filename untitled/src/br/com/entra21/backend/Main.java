@@ -41,6 +41,8 @@ public class Main {
                 case ZERO -> System.out.println("Volte sempre!");
                 case 1 -> ArmazenarMenus.entrar(LIMITE_TENTATIVAS);
                 case 2 -> ArmazenarMenus.cadastrar(LIMITE_TENTATIVAS);
+                case 3 -> ArmazenarMenus.recuperarSenha(LIMITE_TENTATIVAS);
+                case 4 -> ArmazenarMenus.sobre();
             }
 
         } while (opcao != 0);
@@ -54,7 +56,7 @@ public class Main {
         System.out.println("Bem vindo ao Green Banck");
         System.out.println("========================================");
 
-        opcoes = new ArrayList<>(Arrays.asList("0) Sair", "1) Entrar", "2) Cadastrar", "3) Sobre"));
+        opcoes = new ArrayList<>(Arrays.asList("0) Sair", "1) Entrar", "2) Cadastrar","3) Recuperar Senha", "4) Sobre"));
 
         for (String menus : opcoes) {
             System.out.println(menus);
