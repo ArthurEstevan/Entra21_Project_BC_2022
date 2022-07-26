@@ -62,7 +62,6 @@ public class ArmazenarMenus {
             System.out.println(tentativa < 3 ? tentativa + "/3 " + "-cpf informado incorreto tente novamente-\n" : tentativa + "/3 " + "-confirme os dados abaixo-\n");
         }
         try {
-            System.out.print("Informe CPF do novo funcionario: ");
             for (int count = 1; count < 2; count++) {
                 cpf = "00" + (count + Armazenar.funcionarios.size());
             }

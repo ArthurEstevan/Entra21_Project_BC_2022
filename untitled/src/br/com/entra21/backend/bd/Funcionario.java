@@ -84,5 +84,17 @@ public class Funcionario extends Pessoa {
     }
 
     // ======================================== GETTER ======================================== //
+
+    // ======================================== TO STRING ======================================== //
+
+    @Override
+    public String toString() {
+
+        return "========================================\n" + "Dados do Funcionario\n" + "========================================\n" +
+
+                "Nome: " + getNome() + "\n" + "Idade: " + getIdade() + "\n" + "Cpf: " + getCpf() + "\n" + "Data de Adimissao: " + getDataAdmissao() + "\n" +
+
+                "========================================";
+    }
 }
 

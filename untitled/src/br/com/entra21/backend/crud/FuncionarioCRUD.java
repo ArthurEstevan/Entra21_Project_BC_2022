@@ -6,7 +6,6 @@ import br.com.entra21.backend.bd.Funcionario;
 import br.com.entra21.backend.menu.GeradorMenus;
 
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -14,7 +13,6 @@ import java.util.Scanner;
 public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> {
 
     private HashMap<String, Funcionario> lista = Armazenar.funcionarios;
-
 
     public FuncionarioCRUD() {
         super("Funcionario", opcoes);
@@ -48,7 +46,6 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
             System.out.println("Chave: " + funcionario.getCpf() + "\n" + "Nome: " + funcionario.getNome() + "\n" + "Idade: " + funcionario.getIdade() + "\n" + "Admisissao: " + funcionario.getDataAdmissao().format(DateTimeFormatter.ofPattern("dd/MM/YYYY")));
             System.out.println("========================================");
         }
-
     }
 
     @Override
@@ -59,28 +56,54 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
         if (buscar(novo) == null) {
             lista.put(novo.getCpf(), novo);
         } else {
-            System.out.println("Registro já existente na chave: " + novo.getCpf());
+            System.out.println("-registro já existente na chave: " + novo.getCpf() + "-");
         }
     }
 
     @Override
     public Funcionario buscar(Funcionario chave) {
-        return null;
+        return lista.get(chave.getCpf());
     }
 
     @Override
     public void editar(Funcionario chave) {
+
+        Funcionario funcionario = buscar(chave);
+
+        if (funcionario == null) {
+            System.out.println("-funcionario no cpf " + chave.getCpf() + " não encontrado-");
+        } else {
+            lista.put(chave.getCpf(), capturarValor());
+            System.out.println("-dados atualizados-");
+        }
 
     }
 
     @Override
     public void deletar(Funcionario chave) {
 
+        Funcionario funcionario = buscar(chave);
+
+        if(funcionario == null) {
+            System.out.println("-funcionario no cpf " + chave.getCpf() + " nao encontrado-");
+        } else {
+            lista.remove(chave.getCpf());
+            System.out.println("-dados atualizados-");
+        }
+
     }
 
     @Override
     public Funcionario capturarChave() {
-        return null;
+
+        listar(lista);
+
+        Funcionario formulario = new Funcionario();
+
+        System.out.print("Informe a chave: ");
+        formulario.setCpf(super.getInput().next());
+
+        return formulario;
     }
 
     @HelpRemeber(value = "Crud capturar valor adicionei um captção de exception onde corrigo idades erradas;")
@@ -103,7 +126,7 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
         System.out.println("========================================");
 
         System.out.print("Informe o cargo: ");
-        formulario.setNome(getInput().nextLine());
+        formulario.setNome(getInput().next());
 
         do {
             try {
@@ -118,7 +141,7 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
         formulario.setIdade(opcao);
 
         // Gerador de cpf para não dar conflito com o cadastro do inicio do menu que também usa essa função
-        // cpf mantém um padrão porque é uma chave codificada passada pelo backend
+        // cpf mantém um padrão porque é uma chave codificada passada pelo front-end
         if (formulario.getCpf() == null) {
             for (int count = 1; count < 2; count++) {
                 numero = "00" + (count + lista.size());
@@ -131,6 +154,12 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
 
     @Override
     public void exibirDetalhes(Funcionario completo) {
+
+        if(completo == null) {
+            System.out.println("Registro não existente na chave: " + completo.getCpf());
+        } else {
+            System.out.println(completo.toString());
+        }
 
     }
 }
