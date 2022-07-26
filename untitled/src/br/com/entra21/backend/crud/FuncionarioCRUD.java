@@ -55,6 +55,7 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
 
         if (buscar(novo) == null) {
             lista.put(novo.getCpf(), novo);
+            System.out.println("-funcionari atualizado-");
         } else {
             System.out.println("-registro já existente na chave: " + novo.getCpf() + "-");
         }

@@ -26,9 +26,9 @@ public class Armazenar {
 
     public static void gerarEmpresa() {
 
-        empresas.put("001", new Empresa("Henry e Isaac Mudanças Ltda", "001"));
-        empresas.put("002", new Empresa("Vanessa e Pedro Henrique Gráfica Ltda", "002"));
-        empresas.put("003", new Empresa("Emanuel e Josefa Assessoria Jurídica Ltda", "003"));
+        empresas.put("001", new Empresa("Henry e Isaac Mudancas Ltda", "001"));
+        empresas.put("002", new Empresa("Vanessa e Pedro Henrique Grafica Ltda", "002"));
+        empresas.put("003", new Empresa("Emanuel e Josefa Assessoria Juridica Ltda", "003"));
 
     }
 
