@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public interface ICrud<T> {
 
-    ArrayList<String> opcoes = new ArrayList<String>(Arrays.asList("Listar", "Buscar", "Editar", "Deletar"));
+    ArrayList<String> opcoes = new ArrayList<String>(Arrays.asList("Listar", "Adicionar", "Buscar", "Editar", "Deletar"));
 
     public void listar(HashMap<String, T> lista);
 

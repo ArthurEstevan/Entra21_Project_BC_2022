@@ -11,12 +11,11 @@ import java.util.Scanner;
 
 public class Main {
 
-    // meus chamados para fins de organização
+    // meus chamados
     private static LocalDate entrada = LocalDate.now();
     private static ArrayList<String> opcoes;
     private static byte LIMITE_TENTATIVAS = 3;
     private static Scanner input = new Scanner(System.in);
-
 
     public static void main(String[] args) {
 
@@ -37,7 +36,6 @@ public class Main {
             }
 
             switch (opcao) {
-
                 case ZERO -> System.out.println("Volte sempre!");
                 case 1 -> ArmazenarMenus.entrar(LIMITE_TENTATIVAS);
                 case 2 -> ArmazenarMenus.cadastrar(LIMITE_TENTATIVAS);

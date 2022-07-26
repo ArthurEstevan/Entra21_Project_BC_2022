@@ -52,7 +52,7 @@ public class ArmazenarMenus {
 
     public static void cadastrar(byte tentativa) {
 
-        String cpf;
+        String cpf = null;
 
         if (tentativa == 0) {
             System.out.println("-Desculpa Ocorreu um Erro-");
@@ -63,7 +63,10 @@ public class ArmazenarMenus {
         }
         try {
             System.out.print("Informe CPF do novo funcionario: ");
-            cpf = input.next().trim();
+            for (int count = 1; count < 2; count++) {
+                cpf = "00" + (count + Armazenar.funcionarios.size());
+            }
+
             Funcionario funcionario = Armazenar.funcionarios.get(cpf);
 
             if (funcionario != null) {
@@ -111,7 +114,7 @@ public class ArmazenarMenus {
         } else {
             definirFuncionarioLogado(funcionario);
 
-            new MenuPrincipal("do Funcionario", new ArrayList<String>(Arrays.asList("Cadastro", "Relatorio", "Conta Bancaria"))).executarMenu();
+            new MenuPrincipal("do Funcionario", new ArrayList<String>(Arrays.asList("Cadastro", "Relatorio"))).executarMenu();
         }
     }
 
