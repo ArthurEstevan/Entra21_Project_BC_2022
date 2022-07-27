@@ -42,5 +42,4 @@ public class Armazenar {
         funcionarios.put("003", new Funcionario("Estagiario", (byte) 23, "003"));
 
     }
-
 }

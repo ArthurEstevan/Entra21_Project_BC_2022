@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> {
 
-    private HashMap<String, Funcionario> lista = Armazenar.funcionarios;
+    private final HashMap<String, Funcionario> lista = Armazenar.funcionarios;
 
     public FuncionarioCRUD() {
         super("Funcionario", opcoes);
@@ -24,14 +24,12 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
         byte opcao = super.capturar();
 
         switch (opcao) {
-
             case 2 -> listar(lista);
             case 3 -> adicionar();
             case 4 -> exibirDetalhes(buscar(capturarChave()));
             case 5 -> editar(capturarChave());
             case 6 -> deletar(capturarChave());
         }
-
         return opcao;
     }
 
@@ -43,7 +41,7 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
         System.out.println("========================================");
 
         for (Funcionario funcionario : lista.values()) {
-            System.out.println("Chave: " + funcionario.getCpf() + "\n" + "Nome: " + funcionario.getNome() + "\n" + "Idade: " + funcionario.getIdade() + "\n" + "Admisissao: " + funcionario.getDataAdmissao().format(DateTimeFormatter.ofPattern("dd/MM/YYYY")));
+            System.out.println("Chave: " + funcionario.getCpf() + "\n" + "Nome: " + funcionario.getNome() + "\n" + "Idade: " + funcionario.getIdade() + "\n" + "Admisissao: " + funcionario.getDataAdmissao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             System.out.println("========================================");
         }
     }
@@ -84,10 +82,16 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
 
         Funcionario funcionario = buscar(chave);
 
+        // Mantedo posição das chaves no banco de dado consigo ter um controlo de exclusão, como se fosse num sistema de bd, a chave sempre aumenta nunca fica no mesmo lugar de outra chave;
+        Funcionario bancoDados = new Funcionario();
+        // Aqui apenas faço algo mais visual atribuindo ao bancoDados uma visualização da sua chave;
+        bancoDados.setCpf(chave.getCpf());
+
         if (funcionario == null) {
             System.out.println("-funcionario no cpf " + chave.getCpf() + " nao encontrado-");
         } else {
             lista.remove(chave.getCpf());
+            lista.put(chave.getCpf(), bancoDados);
             System.out.println("-dados atualizados-");
         }
     }
@@ -113,7 +117,7 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
 
         byte opcao = 120;
         String numero;
-        String funcoes[] = {"DevJunior", "DevPleno", "DevSenior"};
+        String[] funcoes = {"DevJunior", "DevPleno", "DevSenior"};
 
         System.out.println("========================================");
         System.out.println("Cargos Disponivel");
@@ -125,20 +129,20 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
         System.out.println("========================================");
 
         System.out.print("Informe o cargo: ");
-        formulario.setNome(getInput().next());
+        formulario.setNome(super.getInput().next());
 
         do {
             try {
                 System.out.print("Informe a idade: ");
-                opcao = getInput().nextByte();
+                opcao = super.getInput().nextByte();
 
             } catch (InputMismatchException e) {
-                setInput(new Scanner(System.in));
+                super.setInput(new Scanner(System.in));
             }
         } while (opcao >= 118 || opcao <= 0);
         formulario.setIdade(opcao);
 
-        // Gerador de cpf para não dar conflito com o cadastro do inicio do menu que também usa essa função
+        // Gerador de cpf para não dar conflito com o cadastro do início do (ementa) que também usa essa função
         // cpf mantém um padrão porque é uma chave codificada passada pelo front-end
         if (formulario.getCpf() == null) {
             for (int count = 1; count < 2; count++) {
@@ -146,7 +150,6 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
                 formulario.setCpf(numero);
             }
         }
-
         return formulario;
     }
 
@@ -154,10 +157,8 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
     public void exibirDetalhes(Funcionario completo) {
 
         if (completo == null) {
-            System.out.println("Registro não existente na chave: " + completo.getCpf());
-        } else {
-            System.out.println(completo.toString());
-        }
+            System.out.println("-registro não existente-");
+        } else System.out.println(completo.toString());
 
     }
 
@@ -168,7 +169,7 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
 
         byte opcao = 120;
         String numero;
-        String funcoes[] = {"DevJunior", "DevPleno", "DevSenior"};
+        String[] funcoes = {"DevJunior", "DevPleno", "DevSenior"};
 
         System.out.println("========================================");
         System.out.println("Cargos Disponivel");
@@ -193,16 +194,13 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
         } while (opcao >= 118 || opcao <= 0);
         formulario.setIdade(opcao);
 
-        // Gerador de cpf para não dar conflito com o cadastro do inicio do menu que também usa essa função
-        // cpf mantém um padrão porque é uma chave codificada passada pelo front-end
+        // Aqui apenas inverto o for para que o cpf da pessoa atualizada não fica null
         if (formulario.getCpf() == null) {
             for (int count = 1; count < 2; count++) {
-                numero = "00" + (count + (lista.size()-1));
+                numero = "00" + (count + (lista.size() - 1));
                 formulario.setCpf(numero);
             }
         }
-
         return formulario;
-
     }
 }

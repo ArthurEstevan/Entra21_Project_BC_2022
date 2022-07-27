@@ -6,7 +6,6 @@ import br.com.entra21.backend.bd.Funcionario;
 import br.com.entra21.backend.menu.GeradorMenus;
 
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class EmpresaCRUD extends GeradorMenus implements ICrud<Empresa> {
@@ -29,7 +28,6 @@ public class EmpresaCRUD extends GeradorMenus implements ICrud<Empresa> {
             case 5 -> editar(capturarChave());
             case 6 -> deletar(capturarChave());
         }
-
         return opcao;
     }
 
@@ -41,7 +39,7 @@ public class EmpresaCRUD extends GeradorMenus implements ICrud<Empresa> {
         System.out.println("========================================");
 
         for (Empresa empresa : lista.values()) {
-            System.out.println("Chave: " + empresa.getCnpj() + "\n" + "Nome: " + empresa.getNome() + "\n" + "Admisissao: " + empresa.getDataCadastro().format(DateTimeFormatter.ofPattern("dd/MM/YYYY")));
+            System.out.println("Chave: " + empresa.getCnpj() + "\n" + "Nome: " + empresa.getNome() + "\n" + "Data de Cadastro: " + empresa.getDataCadastro().format(DateTimeFormatter.ofPattern("dd/MM/YYYY")));
             System.out.println("========================================");
         }
     }
@@ -53,9 +51,9 @@ public class EmpresaCRUD extends GeradorMenus implements ICrud<Empresa> {
 
         if (buscar(novo) == null) {
             lista.put(novo.getCnpj(), novo);
-            System.out.println("-empresa atualizada-");
-        } else  {
-            System.out.println("-registro já existente na chave: " + novo.getCnpj() + "-");
+            System.out.println("-empresa cadastrada-");
+        } else {
+            System.out.println("-registro já existente no cnpj: " + novo.getCnpj() + "-");
         }
     }
 
@@ -69,10 +67,10 @@ public class EmpresaCRUD extends GeradorMenus implements ICrud<Empresa> {
 
         Empresa empresa = buscar(chave);
 
-        if(empresa == null) {
+        if (empresa == null) {
             System.out.println("-empresa no cnpj " + chave.getCnpj() + " não encontrado-");
         } else {
-            lista.put(chave.getCnpj(), capturarValor());
+            lista.put(chave.getCnpj(), atualizar());
             System.out.println("-dados atualizados-");
         }
     }
@@ -82,10 +80,15 @@ public class EmpresaCRUD extends GeradorMenus implements ICrud<Empresa> {
 
         Empresa empresa = buscar(chave);
 
-        if(empresa == null) {
+        // Mantedo posição das chaves no banco de dado consigo ter um controlo de exclusão, como se fosse num sistema de bd, a chave sempre aumenta nunca fica no mesmo lugar de outra chave;
+        Empresa bancoDados = new Empresa();
+        // Aqui apenas faço algo mais visual atribuindo ao bancoDados uma visualização da sua chave;
+        bancoDados.setCpf(chave.getCpf());
+
+        if (empresa == null) {
             System.out.println("-empresa no cnpj " + chave.getCnpj() + " nao encontrado-");
         } else {
-            lista.remove(chave.getCnpj(), capturarValor());
+            lista.remove(chave.getCnpj());
             System.out.println("-dados atualizados-");
         }
     }
@@ -114,7 +117,9 @@ public class EmpresaCRUD extends GeradorMenus implements ICrud<Empresa> {
         System.out.println("========================================");
 
         System.out.print("Informe razao social: ");
-        formulario.setNome(super.getInput().next());
+        super.getInput().nextLine();
+        formulario.setNome(super.getInput().nextLine());
+
 
         // Gerador de cnpj para não dar conflito com futuros implementos
         // cnpj mantém um padrão porque é uma chave codificada passada pelo front-end
@@ -140,6 +145,27 @@ public class EmpresaCRUD extends GeradorMenus implements ICrud<Empresa> {
 
     @Override
     public Empresa atualizar() {
-        return null;
+
+        Empresa formulario = new Empresa();
+        String numero;
+
+        System.out.println("========================================");
+        System.out.println("Cadastrando Empresa");
+        System.out.println("========================================");
+
+        System.out.print("Informe razao social: ");
+        getInput().nextLine();
+        formulario.setNome(getInput().next());
+
+        // Gerador de cnpj para não dar conflito com futuros implementos
+        // cnpj mantém um padrão porque é uma chave codificada passada pelo front-end
+        if (formulario.getCnpj() == null) {
+            for (int count = 1; count < 2; count++) {
+                numero = "00" + (count + (lista.size() + 1));
+                formulario.setCnpj(numero);
+            }
+        }
+        return formulario;
     }
+
 }
