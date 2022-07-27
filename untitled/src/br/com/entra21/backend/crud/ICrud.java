@@ -24,4 +24,6 @@ public interface ICrud<T> {
 
     public void exibirDetalhes(T completo);
 
+    public T atualizar();
+
 }

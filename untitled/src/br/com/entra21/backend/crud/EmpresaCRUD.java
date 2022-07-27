@@ -137,4 +137,9 @@ public class EmpresaCRUD extends GeradorMenus implements ICrud<Empresa> {
         }
 
     }
+
+    @Override
+    public Empresa atualizar() {
+        return null;
+    }
 }
