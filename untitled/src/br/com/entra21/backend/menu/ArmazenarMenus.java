@@ -1,7 +1,6 @@
 package br.com.entra21.backend.menu;
 
 import br.com.entra21.backend.bd.Armazenar;
-import br.com.entra21.backend.bd.Cliente;
 import br.com.entra21.backend.bd.Funcionario;
 import br.com.entra21.backend.crud.FuncionarioCRUD;
 import br.com.entra21.backend.exceptions.FuncionarioExistenteException;

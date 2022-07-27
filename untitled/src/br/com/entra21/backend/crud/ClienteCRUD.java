@@ -1,8 +1,7 @@
 package br.com.entra21.backend.crud;
 
-import br.com.entra21.backend.annotation.HelpRemeber;
 import br.com.entra21.backend.bd.Armazenar;
-import br.com.entra21.backend.bd.Funcionario;
+import br.com.entra21.backend.bd.Cliente;
 import br.com.entra21.backend.menu.GeradorMenus;
 
 import java.time.format.DateTimeFormatter;
@@ -10,12 +9,12 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> {
+public class ClienteCRUD extends GeradorMenus implements ICrud<Cliente> {
 
-    private HashMap<String, Funcionario> lista = Armazenar.funcionarios;
+    private HashMap<String, Cliente> lista = Armazenar.clientes;
 
-    public FuncionarioCRUD() {
-        super("Funcionario", opcoes);
+    public ClienteCRUD() {
+        super("Clientes", opcoes);
     }
 
     @Override
@@ -34,14 +33,14 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
     }
 
     @Override
-    public void listar(HashMap<String, Funcionario> lista) {
+    public void listar(HashMap<String, Cliente> lista) {
 
         System.out.println("========================================");
         System.out.println("Listando Funcionarios");
         System.out.println("========================================");
 
-        for (Funcionario funcionario : lista.values()) {
-            System.out.println("Chave: " + funcionario.getCpf() + "\n" + "Nome: " + funcionario.getNome() + "\n" + "Idade: " + funcionario.getIdade() + "\n" + "Admisissao: " + funcionario.getDataAdmissao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        for (Cliente cliente : lista.values()) {
+            System.out.println("Chave: " + cliente.getCpf() + "\n" + "Nome: " + cliente.getNome() + "\n" + "Idade: " + cliente.getIdade() + "\n" + "Admisissao: " + cliente.getDataCadastro().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             System.out.println("========================================");
         }
     }
@@ -49,7 +48,7 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
     @Override
     public void adicionar() {
 
-        Funcionario novo = capturarValor();
+        Cliente novo = capturarValor();
 
         if (buscar(novo) == null) {
             lista.put(novo.getCpf(), novo);
@@ -60,16 +59,16 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
     }
 
     @Override
-    public Funcionario buscar(Funcionario chave) {
+    public Cliente buscar(Cliente chave) {
         return lista.get(chave.getCpf());
     }
 
     @Override
-    public void editar(Funcionario chave) {
+    public void editar(Cliente chave) {
 
-        Funcionario funcionario = buscar(chave);
+        Cliente cliente = buscar(chave);
 
-        if (funcionario == null) {
+        if (cliente == null) {
             System.out.println("-funcionario no cpf " + chave.getCpf() + " não encontrado-");
         } else {
             lista.put(chave.getCpf(), atualizar());
@@ -78,16 +77,16 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
     }
 
     @Override
-    public void deletar(Funcionario chave) {
+    public void deletar(Cliente chave) {
 
-        Funcionario funcionario = buscar(chave);
+        Cliente cliente = buscar(chave);
 
         // Mantedo posição das chaves no banco de dado consigo ter um controlo de exclusão, como se fosse num sistema de bd, a chave sempre aumenta nunca fica no mesmo lugar de outra chave;
-        Funcionario bancoDados = new Funcionario();
+        Cliente bancoDados = new Cliente();
         // Aqui apenas faço algo mais visual atribuindo ao bancoDados uma visualização da sua chave;
         bancoDados.setCpf(chave.getCpf());
 
-        if (funcionario == null) {
+        if (cliente == null) {
             System.out.println("-funcionario no cpf " + chave.getCpf() + " nao encontrado-");
         } else {
             lista.remove(chave.getCpf());
@@ -97,11 +96,11 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
     }
 
     @Override
-    public Funcionario capturarChave() {
+    public Cliente capturarChave() {
 
         listar(lista);
 
-        Funcionario formulario = new Funcionario();
+        Cliente formulario = new Cliente();
 
         System.out.print("Informe a chave: ");
         formulario.setCpf(super.getInput().next());
@@ -109,26 +108,19 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
         return formulario;
     }
 
-    @HelpRemeber(value = "Crud capturar valor adicionei um captção de exception onde corrigo idades erradas;")
     @Override
-    public Funcionario capturarValor() {
+    public Cliente capturarValor() {
 
-        Funcionario formulario = new Funcionario();
+        Cliente formulario = new Cliente();
 
         byte opcao = 120;
         String numero;
-        String[] funcoes = {"DevJunior", "DevPleno", "DevSenior"};
 
         System.out.println("========================================");
-        System.out.println("Cadastrando Funcionario");
+        System.out.println("Cadastrando Cliente");
         System.out.println("========================================");
 
-        for (int contador = 0; contador < funcoes.length; contador++) {
-            System.out.println((contador + 1) + " - " + funcoes[contador]);
-        }
-        System.out.println("========================================");
-
-        System.out.print("Informe o cargo: ");
+        System.out.print("Informe o nome: ");
         formulario.setNome(super.getInput().next());
 
         do {
@@ -154,7 +146,7 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
     }
 
     @Override
-    public void exibirDetalhes(Funcionario completo) {
+    public void exibirDetalhes(Cliente completo) {
 
         if (completo == null) {
             System.out.println("-registro não existente-");
@@ -163,24 +155,18 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
     }
 
     @Override
-    public Funcionario atualizar() {
+    public Cliente atualizar() {
 
-        Funcionario formulario = new Funcionario();
+        Cliente formulario = new Cliente();
 
         byte opcao = 120;
         String numero;
-        String[] funcoes = {"DevJunior", "DevPleno", "DevSenior"};
 
         System.out.println("========================================");
-        System.out.println("Atualizando Funcionario");
+        System.out.println("Atualizando Cliente");
         System.out.println("========================================");
 
-        for (int contador = 0; contador < funcoes.length; contador++) {
-            System.out.println((contador + 1) + " - " + funcoes[contador]);
-        }
-        System.out.println("========================================");
-
-        System.out.print("Informe o cargo: ");
+        System.out.print("Informe o nome: ");
         formulario.setNome(getInput().next());
 
         do {
@@ -203,4 +189,6 @@ public class FuncionarioCRUD extends GeradorMenus implements ICrud<Funcionario> 
         }
         return formulario;
     }
+
 }
+

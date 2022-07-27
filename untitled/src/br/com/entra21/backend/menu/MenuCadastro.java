@@ -1,5 +1,6 @@
 package br.com.entra21.backend.menu;
 
+import br.com.entra21.backend.crud.ClienteCRUD;
 import br.com.entra21.backend.crud.EmpresaCRUD;
 import br.com.entra21.backend.crud.FuncionarioCRUD;
 
@@ -17,8 +18,8 @@ public class MenuCadastro extends GeradorMenus{
         byte opcao = super.capturar();
 
         switch (opcao) {
-            case 2 ->new FuncionarioCRUD().executarMenu();
-            //case 3 ->
+            case 2 -> new FuncionarioCRUD().executarMenu();
+            case 3 -> new ClienteCRUD().executarMenu();
             case 4 -> new EmpresaCRUD().executarMenu();
         }
 

@@ -2,13 +2,13 @@ package br.com.entra21.backend.bd;
 
 import java.util.HashMap;
 
-public class Armazenar {
+public interface Armazenar {
 
-    public static HashMap<String, Cliente> clientes = new HashMap();
-    public static HashMap<String, Funcionario> funcionarios = new HashMap();
-    public static HashMap<String, Empresa> empresas = new HashMap();
+    HashMap<String, Cliente> clientes = new HashMap();
+    HashMap<String, Funcionario> funcionarios = new HashMap();
+    HashMap<String, Empresa> empresas = new HashMap();
 
-    public static void massaDeDados() {
+    static void massaDeDados() {
 
         gerarCliente();
         gerarFuncionario();
@@ -16,7 +16,7 @@ public class Armazenar {
 
     }
 
-    public static void gerarCliente() {
+    private static void gerarCliente() {
 
         clientes.put("001", new Cliente("Lavinia Vera Luzia Rezende", (byte) 70, "001"));
         clientes.put("002", new Cliente("Luciana Elisa Assunção", (byte) 48, "002"));
@@ -24,7 +24,7 @@ public class Armazenar {
 
     }
 
-    public static void gerarEmpresa() {
+    private static void gerarEmpresa() {
 
         empresas.put("001", new Empresa("Henry e Isaac Mudancas Ltda", "001"));
         empresas.put("002", new Empresa("Vanessa e Pedro Henrique Grafica Ltda", "002"));
@@ -32,7 +32,7 @@ public class Armazenar {
 
     }
 
-    public static void gerarFuncionario() {
+    private static void gerarFuncionario() {
 
         Funcionario admin = new Funcionario("Admin", (byte) 32, "001");
         admin.setSenha("123");

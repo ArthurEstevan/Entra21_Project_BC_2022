@@ -2,7 +2,6 @@ package br.com.entra21.backend.crud;
 
 import br.com.entra21.backend.bd.Armazenar;
 import br.com.entra21.backend.bd.Empresa;
-import br.com.entra21.backend.bd.Funcionario;
 import br.com.entra21.backend.menu.GeradorMenus;
 
 import java.time.format.DateTimeFormatter;
@@ -39,7 +38,7 @@ public class EmpresaCRUD extends GeradorMenus implements ICrud<Empresa> {
         System.out.println("========================================");
 
         for (Empresa empresa : lista.values()) {
-            System.out.println("Chave: " + empresa.getCnpj() + "\n" + "Nome: " + empresa.getNome() + "\n" + "Data de Cadastro: " + empresa.getDataCadastro().format(DateTimeFormatter.ofPattern("dd/MM/YYYY")));
+            System.out.println("Chave: " + empresa.getCnpj() + "\n" + "Nome: " + empresa.getNome() + "\n" + "Data de Cadastro: " + empresa.getDataCadastro().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             System.out.println("========================================");
         }
     }
@@ -83,12 +82,13 @@ public class EmpresaCRUD extends GeradorMenus implements ICrud<Empresa> {
         // Mantedo posição das chaves no banco de dado consigo ter um controlo de exclusão, como se fosse num sistema de bd, a chave sempre aumenta nunca fica no mesmo lugar de outra chave;
         Empresa bancoDados = new Empresa();
         // Aqui apenas faço algo mais visual atribuindo ao bancoDados uma visualização da sua chave;
-        bancoDados.setCpf(chave.getCpf());
+        bancoDados.setCpf(chave.getCnpj());
 
         if (empresa == null) {
             System.out.println("-empresa no cnpj " + chave.getCnpj() + " nao encontrado-");
         } else {
             lista.remove(chave.getCnpj());
+            lista.put(chave.getCnpj(), bancoDados);
             System.out.println("-dados atualizados-");
         }
     }
@@ -100,7 +100,7 @@ public class EmpresaCRUD extends GeradorMenus implements ICrud<Empresa> {
 
         Empresa formulario = new Empresa();
 
-        System.out.print("Informe a chave:");
+        System.out.print("Informe a chave: ");
         formulario.setCnpj(super.getInput().next());
 
         return formulario;
@@ -136,10 +136,8 @@ public class EmpresaCRUD extends GeradorMenus implements ICrud<Empresa> {
     public void exibirDetalhes(Empresa completo) {
 
         if (completo == null) {
-            System.out.println("Registro não existente na chave: " + completo.getCnpj());
-        } else {
-            System.out.println(completo.toString());
-        }
+            System.out.println("-registro não existente-");
+        } else System.out.println(completo.toString());
 
     }
 
@@ -150,22 +148,20 @@ public class EmpresaCRUD extends GeradorMenus implements ICrud<Empresa> {
         String numero;
 
         System.out.println("========================================");
-        System.out.println("Cadastrando Empresa");
+        System.out.println("Atualizando Empresa");
         System.out.println("========================================");
 
         System.out.print("Informe razao social: ");
-        getInput().nextLine();
-        formulario.setNome(getInput().next());
+        super.getInput().nextLine();
+        formulario.setNome(super.getInput().next());
 
-        // Gerador de cnpj para não dar conflito com futuros implementos
-        // cnpj mantém um padrão porque é uma chave codificada passada pelo front-end
+        // Aqui apenas inverto o for para que o cpf da pessoa atualizada não fica null
         if (formulario.getCnpj() == null) {
             for (int count = 1; count < 2; count++) {
-                numero = "00" + (count + (lista.size() + 1));
+                numero = "00" + (count + (lista.size() - 1));
                 formulario.setCnpj(numero);
             }
         }
         return formulario;
     }
-
 }

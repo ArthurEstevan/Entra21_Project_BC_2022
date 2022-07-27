@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    // meus chamados
+    // os meus chamados
     private static LocalDate entrada = LocalDate.now();
     private static ArrayList<String> opcoes;
     private static byte LIMITE_TENTATIVAS = 3;
@@ -27,7 +27,7 @@ public class Main {
         do {
             menu();
 
-            // tratamento de erros para não quebrar o input.byte
+            // tratamento de erros para não quebrar a entrada.‘byte’
             try {
                 opcao = input.nextByte();
             } catch (InputMismatchException e) {
