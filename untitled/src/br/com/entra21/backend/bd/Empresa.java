@@ -15,21 +15,22 @@ public class Empresa extends Pessoa {
 
     public Empresa() {
         super();
+        this.dataCadastro = LocalDate.now();
     }
 
     public Empresa(String nome, String cnpj) {
         super(nome);
         this.dataCadastro = LocalDate.now();
-        this.dataAtualizacao = this.dataCadastro;
         this.cnpj = cnpj;
     }
 
-    public Empresa(String nome, String cnpj, ArrayList<String> reclamacoes) {
+    public Empresa(String nome, String cnpj, LocalDate dataCadastro, LocalDate dataAtualizacao, ArrayList<String> reclamacoes) {
         super(nome);
-        this.dataCadastro = LocalDate.now();
-        this.dataAtualizacao = this.dataCadastro;
-        this.cnpj = cnpj;
+        this.dataCadastro = dataCadastro;
+        this.dataAtualizacao = dataAtualizacao;
         this.reclamacoes = reclamacoes;
+        this.cnpj = cnpj;
+        this.dataCadastro = LocalDate.now();
     }
 
     // ======================================== CONSTRUCTOR ======================================== //

@@ -17,21 +17,25 @@ public class Cliente extends Pessoa {
 
     public Cliente(String nome) {
         super(nome);
+        this.dataCadastro = LocalDate.now();
     }
 
     public Cliente(String nome, byte idade) {
         super(nome, idade);
+        this.dataCadastro = LocalDate.now();
     }
 
     public Cliente(String nome, byte idade, String cpf) {
         super(nome, idade, cpf);
+        this.dataCadastro = LocalDate.now();
     }
 
-    public Cliente(String nome, byte idade, String cpf, ArrayList<String> reclamacoes) {
+    public Cliente(String nome, byte idade, String cpf, LocalDate dataCadastro, LocalDate dataAtualizacao, ArrayList<String> reclamacoes) {
         super(nome, idade, cpf);
-        this.dataCadastro = LocalDate.now();
-        this.dataAtualizacao = this.dataCadastro;
+        this.dataCadastro = dataCadastro;
+        this.dataAtualizacao = dataAtualizacao;
         this.reclamacoes = reclamacoes;
+        this.dataCadastro = LocalDate.now();
     }
 
     // ======================================== CONSTRUCTOR ======================================== //
@@ -67,6 +71,14 @@ public class Cliente extends Pessoa {
     }
 
     // ======================================== GETTER ======================================== //
+    public String toString() {
+
+        return "========================================\n" + "Dados do Funcionario\n" + "========================================\n" +
+
+                "Nome: " + getNome() + "\n" + "Idade: " + getIdade() + "\n" + "Cpf: " + getCpf() + "\n" + "Data de Adimissao: " + getDataCadastro() + "\n" +
+
+                "========================================";
+    }
 
 
 }

@@ -19,7 +19,7 @@ public interface Armazenar {
     private static void gerarCliente() {
 
         clientes.put("001", new Cliente("Lavinia Vera Luzia Rezende", (byte) 70, "001"));
-        clientes.put("002", new Cliente("Luciana Elisa Assunção", (byte) 48, "002"));
+        clientes.put("002", new Cliente("Luciana Elisa Assuncao", (byte) 48, "002"));
         clientes.put("003", new Cliente("Marina Marlene Mariane Drumond", (byte) 78, "003"));
 
     }

@@ -38,10 +38,10 @@ public class ArmazenarMenus {
                 verificarSenha(funcionario);
                 return;
             }
-        } catch (NullPointerException e) {
-            System.out.println("Nenhum funcionario encontrado com esse CPF");
-            entrar(--tentativa);
-            return;
+         } catch (NullPointerException e) {
+             System.out.println("Nenhum funcionario encontrado com esse CPF");
+             entrar(--tentativa);
+             return;
         } catch (SenhaIncorretaException e) {
             System.out.println(e.getMessage());
             entrar(--tentativa);
@@ -106,7 +106,7 @@ public class ArmazenarMenus {
 
     private static void verificarSenha(Funcionario funcionario) {
 
-        if (funcionario.getSenha().equals(funcionario.getCpf()) || funcionario.getSenha().equals(funcionario.getDataAdmissao().format(DateTimeFormatter.ofPattern("dd/MM/YYYY")))) {
+        if (funcionario.getSenha().equals(funcionario.getCpf()) || funcionario.getSenha().equals(funcionario.getDataAdmissao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))) {
             atualizarSenha(funcionario);
             Armazenar.funcionarios.size();
         } else {
