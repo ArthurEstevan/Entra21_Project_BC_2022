@@ -3,17 +3,18 @@ package br.com.entra21.backend.bd;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Cliente extends Pessoa {
+    public class Cliente extends Pessoa {
 
-    private LocalDate dataCadastro;
-    private LocalDate dataAtualizacao;
-    private ArrayList<String> reclamacoes;
+        private LocalDate dataCadastro;
+        private LocalDate dataAtualizacao;
+        private ArrayList<String> reclamacoes;
+        private String senha;
 
-    private String senha;
+        private Double saldo;
 
-    public Cliente() {
-        super();
-    }
+        public Cliente() {
+            super();
+        }
 
     // ======================================== CONSTRUCTOR ======================================== //
 
@@ -27,8 +28,9 @@ public class Cliente extends Pessoa {
         this.dataCadastro = LocalDate.now();
     }
 
-    public Cliente(String nome, byte idade, String cpf) {
+    public Cliente(String nome, byte idade, String cpf, Double saldo) {
         super(nome, idade, cpf);
+        this.saldo = saldo;
         this.senha = cpf;
         this.dataCadastro = LocalDate.now();
     }
@@ -62,6 +64,10 @@ public class Cliente extends Pessoa {
         this.senha = senha;
     }
 
+    public void setSaldo(Double saldo) {
+            this.saldo = saldo;
+        }
+
     // ======================================== SETTER ======================================== //
 
     // ======================================== GETTER ======================================== //
@@ -82,6 +88,10 @@ public class Cliente extends Pessoa {
         return senha;
     }
 
+    public Double getSaldo() {
+            return saldo;
+        }
+
     // ======================================== GETTER ======================================== //
     public String toString() {
 
@@ -91,6 +101,5 @@ public class Cliente extends Pessoa {
 
                 "========================================";
     }
-
 
 }

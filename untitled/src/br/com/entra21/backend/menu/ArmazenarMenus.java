@@ -73,10 +73,10 @@ public class ArmazenarMenus {
                 verificarSenhaCliente(cliente);
                 return;
             }
-        } catch (NullPointerException e) {
-            System.out.println("Nenhum funcionario encontrado com esse CPF");
-            entrarCliente(--tentativa);
-            return;
+//        } catch (NullPointerException e) {
+//            System.out.println("Nenhum funcionario encontrado com esse CPF");
+//            entrarCliente(--tentativa);
+//            return;
         } catch (SenhaIncorretaException e) {
             System.out.println(e.getMessage());
             entrarCliente(--tentativa);
