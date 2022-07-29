@@ -1,6 +1,7 @@
 package br.com.entra21.backend.menu;
 
 import br.com.entra21.backend.bd.Armazenar;
+import br.com.entra21.backend.bd.Cliente;
 import br.com.entra21.backend.bd.Funcionario;
 import br.com.entra21.backend.crud.FuncionarioCRUD;
 import br.com.entra21.backend.exceptions.FuncionarioExistenteException;
@@ -15,8 +16,9 @@ public class ArmazenarMenus {
 
     static Scanner input = new Scanner(System.in);
     public static Funcionario funcionarioLogado = null;
+    public static Cliente clientelogado = null;
 
-    public static void entrar(byte tentativa) {
+    public static void entrarFuncionario(byte tentativa) {
 
         if (tentativa == 0) {
             System.out.println("-Desculpa Ocorreu um Erro-");
@@ -35,16 +37,49 @@ public class ArmazenarMenus {
             if (!funcionario.getSenha().equals(input.next())) {
                 throw new SenhaIncorretaException();
             } else {
-                verificarSenha(funcionario);
+                verificarSenhaFuncionario(funcionario);
                 return;
             }
          } catch (NullPointerException e) {
              System.out.println("Nenhum funcionario encontrado com esse CPF");
-             entrar(--tentativa);
+             entrarFuncionario(--tentativa);
              return;
         } catch (SenhaIncorretaException e) {
             System.out.println(e.getMessage());
-            entrar(--tentativa);
+            entrarFuncionario(--tentativa);
+            return;
+        }
+    }
+
+    public static void entrarCliente(byte tentativa) {
+
+        if (tentativa == 0) {
+            System.out.println("-Desculpa Ocorreu um Erro-");
+            return;
+        } else {
+            System.out.println("\n============== Login ==============\n");
+            System.out.println(tentativa < 3 ? tentativa + "/3 " + "-senha ou usuario incorreto tente novamente-\n" : tentativa + "/3 " + "-confirme os dados abaixo-\n");
+        }
+        try {
+            System.out.print("Informe CPF do cliente: ");
+            Cliente cliente = Armazenar.clientes.get(input.next().trim());
+
+            System.out.println("Cliente encontrado: " + cliente.getNome());
+            System.out.print("Informe a senha para liberar o acesso: ");
+
+            if (!cliente.getSenha().equals(input.next())) {
+                throw new SenhaIncorretaException();
+            } else {
+                verificarSenhaCliente(cliente);
+                return;
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Nenhum funcionario encontrado com esse CPF");
+            entrarCliente(--tentativa);
+            return;
+        } catch (SenhaIncorretaException e) {
+            System.out.println(e.getMessage());
+            entrarCliente(--tentativa);
             return;
         }
     }
@@ -104,15 +139,27 @@ public class ArmazenarMenus {
 
     }
 
-    private static void verificarSenha(Funcionario funcionario) {
+    private static void verificarSenhaFuncionario(Funcionario funcionario) {
 
         if (funcionario.getSenha().equals(funcionario.getCpf()) || funcionario.getSenha().equals(funcionario.getDataAdmissao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))) {
-            atualizarSenha(funcionario);
+            atualizarSenhaFuncionario(funcionario);
             Armazenar.funcionarios.size();
         } else {
             definirFuncionarioLogado(funcionario);
 
             new MenuPrincipal("do Funcionario", new ArrayList<String>(Arrays.asList("Cadastro", "Relatorio"))).executarMenu();
+        }
+    }
+
+    private static void verificarSenhaCliente(Cliente cliente) {
+
+        if (cliente.getSenha().equals(cliente.getCpf()) || cliente.getSenha().equals(cliente.getDataCadastro().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))) {
+            atualizarSenhaCliente(cliente);
+            Armazenar.clientes.size();
+        } else {
+            definirClienteLogado(cliente);
+
+            new MenuOperacoesBancaria("do Funcionario", new ArrayList<String>(Arrays.asList("Dados Bancarios", "Deposito", "Sacar", "Transferencia", "Investimento", "Saldo")), clientelogado).executarMenu();
         }
     }
 
@@ -126,14 +173,31 @@ public class ArmazenarMenus {
         funcionarioLogado = funcionario;
     }
 
-    private static void atualizarSenha(Funcionario funcionario) {
+    private static void definirClienteLogado(Cliente cliente) {
+
+        if (cliente != null) {
+            System.out.println("~~~~~~~~~~~~ Bem Vindo " + cliente.getNome() + " ~~~~~~~~~~~~");
+        } else {
+            System.out.println("Até a proxima " + cliente.getNome() + ", volte sempre que precisar.");
+        }
+        clientelogado = cliente;
+    }
+
+    private static void atualizarSenhaFuncionario(Funcionario funcionario) {
 
         System.out.print("Atualize sua senha, pois nao e seguro manter a senha igual ao cpf ou com a data de admissao: ");
         funcionario.setSenha(input.next());
-        verificarSenha(funcionario);
+        verificarSenhaFuncionario(funcionario);
     }
 
-    public static void recuperarSenha(byte tentativa) {
+    private static void atualizarSenhaCliente(Cliente cliente) {
+
+        System.out.print("Atualize sua senha, pois nao e seguro manter a senha igual ao cpf ou com a data de admissao: ");
+        cliente.setSenha(input.next());
+        verificarSenhaCliente(cliente);
+    }
+
+    public static void recuperarSenhaFuncionario(byte tentativa) {
 
         if (tentativa == 0) {
             System.out.println("-Desculpa Ocorreu um Erro-");
@@ -158,7 +222,37 @@ public class ArmazenarMenus {
         } catch (NullPointerException e) {
 
             System.out.println("Nenhum funcionario encontrado com esse CPF.");
-            recuperarSenha(--tentativa);
+            recuperarSenhaFuncionario(--tentativa);
+            return;
+        }
+    }
+
+    public static void recuperarSenhaCliente(byte tentativa) {
+
+        if (tentativa == 0) {
+            System.out.println("-Desculpa Ocorreu um Erro-");
+            return;
+        } else {
+            System.out.println("\n============== Menu Recuperacao de Senha ==============\n");
+            System.out.println(tentativa < 3 ? tentativa + "/3 " + "-senha ou usuario incorreto tente novamente-\n" : tentativa + "/3 " + "-confirme os dados abaixo-\n");
+        }
+        try {
+            System.out.print("Informe o CPF do funcionario: ");
+            Cliente cliente = Armazenar.clientes.get(input.next().trim());
+
+            System.out.println("Funcionario encontrado: " + cliente.getNome());
+            cliente.setSenha(cliente.getDataCadastro().format(DateTimeFormatter.ofPattern("dd/MM/YYYY")));
+            Armazenar.clientes.put(cliente.getCpf(), cliente);
+
+            System.out.println("A senha foi atualizada com a data de admissao no formato dd/MM/YYYY:");
+            System.out.println("Funcionario atualizado, por favor realize o login:");
+
+            System.out.println("==============================================");
+
+        } catch (NullPointerException e) {
+
+            System.out.println("Nenhum funcionario encontrado com esse CPF.");
+            recuperarSenhaCliente(--tentativa);
             return;
         }
     }

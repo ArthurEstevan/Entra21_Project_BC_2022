@@ -18,9 +18,13 @@ public interface Armazenar {
 
     private static void gerarCliente() {
 
-        clientes.put("001", new Cliente("Lavinia Vera Luzia Rezende", (byte) 70, "001"));
-        clientes.put("002", new Cliente("Luciana Elisa Assuncao", (byte) 48, "002"));
-        clientes.put("003", new Cliente("Marina Marlene Mariane Drumond", (byte) 78, "003"));
+        Cliente admin = new Cliente("Arthur Estevan Vargas", (byte) 19, "001");
+        admin.setSenha("123");
+        clientes.put("001", admin);
+
+        clientes.put("002", new Cliente("Lavinia Vera Luzia Rezende", (byte) 70, "002"));
+        clientes.put("003", new Cliente("Luciana Elisa Assuncao", (byte) 48, "003"));
+        clientes.put("004", new Cliente("Marina Marlene Mariane Drumond", (byte) 78, "004"));
 
     }
 

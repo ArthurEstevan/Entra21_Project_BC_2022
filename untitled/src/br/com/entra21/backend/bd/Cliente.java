@@ -9,6 +9,8 @@ public class Cliente extends Pessoa {
     private LocalDate dataAtualizacao;
     private ArrayList<String> reclamacoes;
 
+    private String senha;
+
     public Cliente() {
         super();
     }
@@ -27,6 +29,7 @@ public class Cliente extends Pessoa {
 
     public Cliente(String nome, byte idade, String cpf) {
         super(nome, idade, cpf);
+        this.senha = cpf;
         this.dataCadastro = LocalDate.now();
     }
 
@@ -35,6 +38,7 @@ public class Cliente extends Pessoa {
         this.dataCadastro = dataCadastro;
         this.dataAtualizacao = dataAtualizacao;
         this.reclamacoes = reclamacoes;
+        this.senha = cpf;
         this.dataCadastro = LocalDate.now();
     }
 
@@ -54,6 +58,10 @@ public class Cliente extends Pessoa {
         this.reclamacoes = reclamacoes;
     }
 
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     // ======================================== SETTER ======================================== //
 
     // ======================================== GETTER ======================================== //
@@ -68,6 +76,10 @@ public class Cliente extends Pessoa {
 
     public ArrayList<String> getReclamacoes() {
         return reclamacoes;
+    }
+
+    public String getSenha() {
+        return senha;
     }
 
     // ======================================== GETTER ======================================== //

@@ -12,9 +12,7 @@ import java.util.Scanner;
 public class Main {
 
     // os meus chamados
-    private static LocalDate entrada = LocalDate.now();
-    private static ArrayList<String> opcoes;
-    private static byte LIMITE_TENTATIVAS = 3;
+    private static final LocalDate entrada = LocalDate.now();
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -35,12 +33,15 @@ public class Main {
                 input = new Scanner(System.in);
             }
 
+            byte LIMITE_TENTATIVAS = 3;
             switch (opcao) {
                 case ZERO -> System.out.println("Volte sempre!");
-                case 1 -> ArmazenarMenus.entrar(LIMITE_TENTATIVAS);
-                case 2 -> ArmazenarMenus.cadastrar(LIMITE_TENTATIVAS);
-                case 3 -> ArmazenarMenus.recuperarSenha(LIMITE_TENTATIVAS);
-                case 4 -> ArmazenarMenus.sobre();
+                case 1 -> ArmazenarMenus.entrarFuncionario(LIMITE_TENTATIVAS);
+                case 2 -> ArmazenarMenus.entrarCliente(LIMITE_TENTATIVAS);
+                case 3 -> ArmazenarMenus.cadastrar(LIMITE_TENTATIVAS);
+                case 4 -> ArmazenarMenus.recuperarSenhaFuncionario(LIMITE_TENTATIVAS);
+                case 5 -> ArmazenarMenus.recuperarSenhaCliente(LIMITE_TENTATIVAS);
+                case 6 -> ArmazenarMenus.sobre();
             }
 
         } while (opcao != 0);
@@ -54,7 +55,7 @@ public class Main {
         System.out.println("Bem vindo ao Green Banck");
         System.out.println("========================================");
 
-        opcoes = new ArrayList<>(Arrays.asList("0) Sair", "1) Entrar", "2) Cadastrar","3) Recuperar Senha", "4) Sobre"));
+        ArrayList<String> opcoes = new ArrayList<>(Arrays.asList("0) Sair", "1) Conta Funcionario", "2) Conta Cliente", "3) Cadastrar", "4) Recuperar Senha Funcionario", "5) Recuperar Senha Cliente", "6) Sobre"));
 
         for (String menus : opcoes) {
             System.out.println(menus);
